@@ -1,0 +1,7 @@
+{
+  "name": "Hệ thống Quản trị Giáo viên Tiếng Anh",
+  "description": "Hệ thống quản trị và trợ lý AI dành cho giáo viên tiếng Anh: tạo đề thi trắc nghiệm bằng AI, quản lý lớp học, học sinh, giao nhiệm vụ và phân tích học tập.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

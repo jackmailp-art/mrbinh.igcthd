@@ -1,0 +1,2052 @@
+{
+  "classes": [
+    {
+      "id": "c-1790092215638",
+      "name": "Lớp 11F03",
+      "grade": "Lớp 11",
+      "code": "AV-387",
+      "studentsCount": 0,
+      "activeExams": 1,
+      "pin": "4979",
+      "description": "Lớp học tiếng Anh Lớp 11"
+    },
+    {
+      "id": "c-1790068920256",
+      "name": "Lớp 12G09",
+      "grade": "Lớp 12",
+      "code": "AV-496",
+      "studentsCount": 38,
+      "activeExams": 3,
+      "pin": "4324",
+      "description": "Lớp học tiếng Anh Lớp 12"
+    }
+  ],
+  "exams": [
+    {
+      "id": "ex-1790261353553",
+      "title": "Đề thi Tiếng Anh Tổng Hợp: Green Living & Environmental Protection (Lớp 10)",
+      "grade": "Lớp 10",
+      "subject": "Tiếng Anh",
+      "questionsCount": 27,
+      "duration": "59 phút",
+      "difficulty": "Thông hiểu",
+      "topic": "Green Living & Environmental Protection",
+      "sections": [
+        {
+          "type": "listening",
+          "title": "PART I: LISTENING COMPREHENSION",
+          "questionCount": 8
+        },
+        {
+          "type": "pronunciation",
+          "title": "PART II: PRONUNCIATION & STRESS",
+          "questionCount": 2
+        },
+        {
+          "type": "lexico_grammar",
+          "title": "PART II: LEXICO & GRAMMAR",
+          "questionCount": 4
+        },
+        {
+          "type": "arrangement",
+          "title": "PART III: ARRANGEMENT (LETTER / DIALOGUE / PARAGRAPH)",
+          "questionCount": 1
+        },
+        {
+          "type": "cloze_reading",
+          "title": "PART IV: CLOZE READING",
+          "questionCount": 5
+        },
+        {
+          "type": "reading_comprehension",
+          "title": "PART V: READING COMPREHENSION",
+          "questionCount": 5
+        },
+        {
+          "type": "writing_short",
+          "title": "PART VI: WRITING - SHORT ANSWER",
+          "questionCount": 2
+        },
+        {
+          "type": "essay_writing",
+          "title": "PART VII: ESSAY / PARAGRAPH WRITING",
+          "questionCount": 1
+        }
+      ],
+      "submissions": 0,
+      "avgScore": 0,
+      "createdAt": "Hôm nay",
+      "status": "Đang mở",
+      "questions": [
+        {
+          "id": "q-1",
+          "num": 1,
+          "sectionType": "listening",
+          "sectionTitle": "PART I: LISTENING COMPREHENSION (TASK 1: TRUE / FALSE)",
+          "questionType": "multiple_choice",
+          "listeningTask": "task1_true_false",
+          "audioTitle": "Conversation: Green Campus Club & Waste Reduction Initiative",
+          "audioSpeakerInfo": "Conversation between Minh (Environmental Club Leader) and Lan (New Student Volunteer)",
+          "audioScript": "Minh: Welcome to our Green Campus Club, Lan! We are really excited to have you on our team.\nLan: Thanks, Minh! I've been wanting to contribute to making our school greener. What projects are we currently working on?\nMinh: Our primary focus this term is reducing single-use plastic in the school canteen. Last month, our survey found that students threw away more than 500 disposable cups and plastic bottles every single day!\nLan: That is an alarming number! What steps are we taking to change that?\nMinh: Starting next Monday, we are launching the 'Bring Your Own Tumbler' campaign. Students who bring their personal reusable bottles will receive a 10% discount on all drinks.\nLan: That's a great incentive! What about waste sorting in the classrooms?\nMinh: We have already placed three distinct colored bins on each floor: yellow for paper and notebooks, green for organic food leftovers, and blue for recyclable cans and plastic items. We need volunteers to guide students during lunch break from 11:30 to 12:15.\nLan: I can definitely help with that on Tuesdays and Thursdays.\nMinh: Fantastic! Also, remember our tree planting event next Sunday morning at 8:00 AM in the school garden. We aim to plant 30 new indigenous fruit trees to create more green shade.\nLan: That sounds wonderful! I will invite my classmates to join as well.",
+          "question": "Last month's survey revealed that students discarded more than 500 disposable cups and bottles daily.",
+          "options": [
+            "A. True",
+            "B. False"
+          ],
+          "answer": "A. True",
+          "audioEvidence": "Minh: '...our survey found that students threw away more than 500 disposable cups and plastic bottles every single day!'",
+          "explanation": "Đúng (True). Trích trong Audio Script: Khảo sát tháng trước chỉ ra học sinh vứt hơn 500 cốc và chai nhựa dùng một lần mỗi ngày.",
+          "grammarPoint": "Listening for specific facts & statistics"
+        },
+        {
+          "id": "q-2",
+          "num": 2,
+          "sectionType": "listening",
+          "sectionTitle": "PART I: LISTENING COMPREHENSION (TASK 1: TRUE / FALSE)",
+          "questionType": "multiple_choice",
+          "listeningTask": "task1_true_false",
+          "audioTitle": "Conversation: Green Campus Club & Waste Reduction Initiative",
+          "audioSpeakerInfo": "Conversation between Minh (Environmental Club Leader) and Lan (New Student Volunteer)",
+          "audioScript": "Minh: Welcome to our Green Campus Club, Lan! We are really excited to have you on our team.\nLan: Thanks, Minh! I've been wanting to contribute to making our school greener. What projects are we currently working on?\nMinh: Our primary focus this term is reducing single-use plastic in the school canteen. Last month, our survey found that students threw away more than 500 disposable cups and plastic bottles every single day!\nLan: That is an alarming number! What steps are we taking to change that?\nMinh: Starting next Monday, we are launching the 'Bring Your Own Tumbler' campaign. Students who bring their personal reusable bottles will receive a 10% discount on all drinks.\nLan: That's a great incentive! What about waste sorting in the classrooms?\nMinh: We have already placed three distinct colored bins on each floor: yellow for paper and notebooks, green for organic food leftovers, and blue for recyclable cans and plastic items. We need volunteers to guide students during lunch break from 11:30 to 12:15.\nLan: I can definitely help with that on Tuesdays and Thursdays.\nMinh: Fantastic! Also, remember our tree planting event next Sunday morning at 8:00 AM in the school garden. We aim to plant 30 new indigenous fruit trees to create more green shade.\nLan: That sounds wonderful! I will invite my classmates to join as well.",
+          "question": "Students who bring reusable water bottles will receive a 20% discount on canteen beverages.",
+          "options": [
+            "A. True",
+            "B. False"
+          ],
+          "answer": "B. False",
+          "audioEvidence": "Minh: 'Students who bring their personal reusable bottles will receive a 10% discount on all drinks.'",
+          "explanation": "Sai (False). Mức giảm giá là 10% ('a 10% discount'), không phải 20% như câu nhận định.",
+          "grammarPoint": "Listening for accurate details & numbers"
+        },
+        {
+          "id": "q-3",
+          "num": 3,
+          "sectionType": "listening",
+          "sectionTitle": "PART I: LISTENING COMPREHENSION (TASK 1: TRUE / FALSE)",
+          "questionType": "multiple_choice",
+          "listeningTask": "task1_true_false",
+          "audioTitle": "Conversation: Green Campus Club & Waste Reduction Initiative",
+          "audioSpeakerInfo": "Conversation between Minh (Environmental Club Leader) and Lan (New Student Volunteer)",
+          "audioScript": "Minh: Welcome to our Green Campus Club, Lan! We are really excited to have you on our team.\nLan: Thanks, Minh! I've been wanting to contribute to making our school greener. What projects are we currently working on?\nMinh: Our primary focus this term is reducing single-use plastic in the school canteen. Last month, our survey found that students threw away more than 500 disposable cups and plastic bottles every single day!\nLan: That is an alarming number! What steps are we taking to change that?\nMinh: Starting next Monday, we are launching the 'Bring Your Own Tumbler' campaign. Students who bring their personal reusable bottles will receive a 10% discount on all drinks.\nLan: That's a great incentive! What about waste sorting in the classrooms?\nMinh: We have already placed three distinct colored bins on each floor: yellow for paper and notebooks, green for organic food leftovers, and blue for recyclable cans and plastic items. We need volunteers to guide students during lunch break from 11:30 to 12:15.\nLan: I can definitely help with that on Tuesdays and Thursdays.\nMinh: Fantastic! Also, remember our tree planting event next Sunday morning at 8:00 AM in the school garden. We aim to plant 30 new indigenous fruit trees to create more green shade.\nLan: That sounds wonderful! I will invite my classmates to join as well.",
+          "question": "The yellow bins placed on each floor are designated for collecting organic food waste.",
+          "options": [
+            "A. True",
+            "B. False"
+          ],
+          "answer": "B. False",
+          "audioEvidence": "Minh: '...yellow for paper and notebooks, green for organic food leftovers...'",
+          "explanation": "Sai (False). Thùng vàng dành cho giấy và vở (yellow for paper and notebooks), còn thùng màu xanh lá mới dùng cho rác hữu cơ.",
+          "grammarPoint": "Listening for distinguishing categories"
+        },
+        {
+          "id": "q-4",
+          "num": 4,
+          "sectionType": "listening",
+          "sectionTitle": "PART I: LISTENING COMPREHENSION (TASK 1: TRUE / FALSE)",
+          "questionType": "multiple_choice",
+          "listeningTask": "task1_true_false",
+          "audioTitle": "Conversation: Green Campus Club & Waste Reduction Initiative",
+          "audioSpeakerInfo": "Conversation between Minh (Environmental Club Leader) and Lan (New Student Volunteer)",
+          "audioScript": "Minh: Welcome to our Green Campus Club, Lan! We are really excited to have you on our team.\nLan: Thanks, Minh! I've been wanting to contribute to making our school greener. What projects are we currently working on?\nMinh: Our primary focus this term is reducing single-use plastic in the school canteen. Last month, our survey found that students threw away more than 500 disposable cups and plastic bottles every single day!\nLan: That is an alarming number! What steps are we taking to change that?\nMinh: Starting next Monday, we are launching the 'Bring Your Own Tumbler' campaign. Students who bring their personal reusable bottles will receive a 10% discount on all drinks.\nLan: That's a great incentive! What about waste sorting in the classrooms?\nMinh: We have already placed three distinct colored bins on each floor: yellow for paper and notebooks, green for organic food leftovers, and blue for recyclable cans and plastic items. We need volunteers to guide students during lunch break from 11:30 to 12:15.\nLan: I can definitely help with that on Tuesdays and Thursdays.\nMinh: Fantastic! Also, remember our tree planting event next Sunday morning at 8:00 AM in the school garden. We aim to plant 30 new indigenous fruit trees to create more green shade.\nLan: That sounds wonderful! I will invite my classmates to join as well.",
+          "question": "The volunteer tree planting campaign will take place in the school garden on Sunday morning.",
+          "options": [
+            "A. True",
+            "B. False"
+          ],
+          "answer": "A. True",
+          "audioEvidence": "Minh: '...tree planting event next Sunday morning at 8:00 AM in the school garden.'",
+          "explanation": "Đúng (True). Hoạt động trồng cây diễn ra vào sáng Chủ nhật lúc 8:00 tại vườn trường.",
+          "grammarPoint": "Listening for time and venue details"
+        },
+        {
+          "id": "q-5",
+          "num": 5,
+          "sectionType": "listening",
+          "sectionTitle": "PART I: LISTENING COMPREHENSION (TASK 2: MULTIPLE CHOICE)",
+          "questionType": "multiple_choice",
+          "listeningTask": "task2_multiple_choice",
+          "audioTitle": "Conversation: Green Campus Club & Waste Reduction Initiative",
+          "audioSpeakerInfo": "Conversation between Minh (Environmental Club Leader) and Lan (New Student Volunteer)",
+          "audioScript": "Minh: Welcome to our Green Campus Club, Lan! We are really excited to have you on our team.\nLan: Thanks, Minh! I've been wanting to contribute to making our school greener. What projects are we currently working on?\nMinh: Our primary focus this term is reducing single-use plastic in the school canteen. Last month, our survey found that students threw away more than 500 disposable cups and plastic bottles every single day!\nLan: That is an alarming number! What steps are we taking to change that?\nMinh: Starting next Monday, we are launching the 'Bring Your Own Tumbler' campaign. Students who bring their personal reusable bottles will receive a 10% discount on all drinks.\nLan: That's a great incentive! What about waste sorting in the classrooms?\nMinh: We have already placed three distinct colored bins on each floor: yellow for paper and notebooks, green for organic food leftovers, and blue for recyclable cans and plastic items. We need volunteers to guide students during lunch break from 11:30 to 12:15.\nLan: I can definitely help with that on Tuesdays and Thursdays.\nMinh: Fantastic! Also, remember our tree planting event next Sunday morning at 8:00 AM in the school garden. We aim to plant 30 new indigenous fruit trees to create more green shade.\nLan: That sounds wonderful! I will invite my classmates to join as well.",
+          "question": "What is the primary objective of the Green Campus Club this term?",
+          "options": [
+            "A. Painting classroom walls and hallways",
+            "B. Reducing single-use plastics in the school canteen",
+            "C. Organizing an inter-school sports competition",
+            "D. Raising funds to buy new computer equipment"
+          ],
+          "answer": "B. Reducing single-use plastics in the school canteen",
+          "audioEvidence": "Minh: 'Our primary focus this term is reducing single-use plastic in the school canteen.'",
+          "explanation": "Phương án B đúng. Minh khẳng định trọng tâm chính học kỳ này là cắt giảm rác thải nhựa dùng một lần tại căng tin.",
+          "grammarPoint": "Listening for main idea & objectives"
+        },
+        {
+          "id": "q-6",
+          "num": 6,
+          "sectionType": "listening",
+          "sectionTitle": "PART I: LISTENING COMPREHENSION (TASK 2: MULTIPLE CHOICE)",
+          "questionType": "multiple_choice",
+          "listeningTask": "task2_multiple_choice",
+          "audioTitle": "Conversation: Green Campus Club & Waste Reduction Initiative",
+          "audioSpeakerInfo": "Conversation between Minh (Environmental Club Leader) and Lan (New Student Volunteer)",
+          "audioScript": "Minh: Welcome to our Green Campus Club, Lan! We are really excited to have you on our team.\nLan: Thanks, Minh! I've been wanting to contribute to making our school greener. What projects are we currently working on?\nMinh: Our primary focus this term is reducing single-use plastic in the school canteen. Last month, our survey found that students threw away more than 500 disposable cups and plastic bottles every single day!\nLan: That is an alarming number! What steps are we taking to change that?\nMinh: Starting next Monday, we are launching the 'Bring Your Own Tumbler' campaign. Students who bring their personal reusable bottles will receive a 10% discount on all drinks.\nLan: That's a great incentive! What about waste sorting in the classrooms?\nMinh: We have already placed three distinct colored bins on each floor: yellow for paper and notebooks, green for organic food leftovers, and blue for recyclable cans and plastic items. We need volunteers to guide students during lunch break from 11:30 to 12:15.\nLan: I can definitely help with that on Tuesdays and Thursdays.\nMinh: Fantastic! Also, remember our tree planting event next Sunday morning at 8:00 AM in the school garden. We aim to plant 30 new indigenous fruit trees to create more green shade.\nLan: That sounds wonderful! I will invite my classmates to join as well.",
+          "question": "At what time do volunteers need to guide students with waste sorting during lunch break?",
+          "options": [
+            "A. From 10:30 to 11:15",
+            "B. From 11:00 to 11:45",
+            "C. From 11:30 to 12:15",
+            "D. From 12:15 to 13:00"
+          ],
+          "answer": "C. From 11:30 to 12:15",
+          "audioEvidence": "Minh: 'We need volunteers to guide students during lunch break from 11:30 to 12:15.'",
+          "explanation": "Phương án C đúng. Thời gian tình nguyện viên trực hướng dẫn phân loại rác là từ 11:30 đến 12:15.",
+          "grammarPoint": "Listening for specific time schedules"
+        },
+        {
+          "id": "q-7",
+          "num": 7,
+          "sectionType": "listening",
+          "sectionTitle": "PART I: LISTENING COMPREHENSION (TASK 2: MULTIPLE CHOICE)",
+          "questionType": "multiple_choice",
+          "listeningTask": "task2_multiple_choice",
+          "audioTitle": "Conversation: Green Campus Club & Waste Reduction Initiative",
+          "audioSpeakerInfo": "Conversation between Minh (Environmental Club Leader) and Lan (New Student Volunteer)",
+          "audioScript": "Minh: Welcome to our Green Campus Club, Lan! We are really excited to have you on our team.\nLan: Thanks, Minh! I've been wanting to contribute to making our school greener. What projects are we currently working on?\nMinh: Our primary focus this term is reducing single-use plastic in the school canteen. Last month, our survey found that students threw away more than 500 disposable cups and plastic bottles every single day!\nLan: That is an alarming number! What steps are we taking to change that?\nMinh: Starting next Monday, we are launching the 'Bring Your Own Tumbler' campaign. Students who bring their personal reusable bottles will receive a 10% discount on all drinks.\nLan: That's a great incentive! What about waste sorting in the classrooms?\nMinh: We have already placed three distinct colored bins on each floor: yellow for paper and notebooks, green for organic food leftovers, and blue for recyclable cans and plastic items. We need volunteers to guide students during lunch break from 11:30 to 12:15.\nLan: I can definitely help with that on Tuesdays and Thursdays.\nMinh: Fantastic! Also, remember our tree planting event next Sunday morning at 8:00 AM in the school garden. We aim to plant 30 new indigenous fruit trees to create more green shade.\nLan: That sounds wonderful! I will invite my classmates to join as well.",
+          "question": "How many new indigenous fruit trees does the club aim to plant next Sunday?",
+          "options": [
+            "A. 15 trees",
+            "B. 20 trees",
+            "C. 30 trees",
+            "D. 50 trees"
+          ],
+          "answer": "C. 30 trees",
+          "audioEvidence": "Minh: 'We aim to plant 30 new indigenous fruit trees to create more green shade.'",
+          "explanation": "Phương án C đúng. Mục tiêu của sự kiện là trồng 30 cây ăn quả bản địa mới.",
+          "grammarPoint": "Listening for quantities and numbers"
+        },
+        {
+          "id": "q-8",
+          "num": 8,
+          "sectionType": "pronunciation",
+          "sectionTitle": "PART II: PRONUNCIATION & STRESS",
+          "questionType": "multiple_choice",
+          "question": "Choose the word whose underlined part is pronounced differently from the others:",
+          "options": [
+            "A. decid<u>ed</u>",
+            "B. wait<u>ed</u>",
+            "C. watch<u>ed</u>",
+            "D. invit<u>ed</u>"
+          ],
+          "answer": "C. watch<u>ed</u>",
+          "underlinedPart": "ed",
+          "ipaTranscription": "watched: /wɒtʃt/ vs decided: /dɪˈsaɪ.dɪd/, waited: /ˈweɪ.tɪd/, invited: /ɪnˈvaɪ.tɪd/",
+          "explanation": "Đuôi '-ed' trong 'watched' /wɒtʃt/ phát âm là /t/ vì đứng sau âm vô thanh /tʃ/. Ba từ còn lại phát âm là /ɪd/ vì tận cùng là các âm /t/ hoặc /d/.",
+          "grammarPoint": "Phát âm đuôi -ed (/t/, /d/, /ɪd/)"
+        },
+        {
+          "id": "q-9",
+          "num": 9,
+          "sectionType": "pronunciation",
+          "sectionTitle": "PART II: PRONUNCIATION & STRESS",
+          "questionType": "multiple_choice",
+          "question": "Choose the word whose underlined part is pronounced differently from the others:",
+          "options": [
+            "A. cl<u>ea</u>n",
+            "B. t<u>ea</u>ch",
+            "C. br<u>ea</u>k",
+            "D. pl<u>ea</u>se"
+          ],
+          "answer": "C. br<u>ea</u>k",
+          "underlinedPart": "ea",
+          "ipaTranscription": "break: /breɪk/ vs clean: /kliːn/, teach: /tiːtʃ/, please: /pliːz/",
+          "explanation": "Phần gạch chân 'ea' trong 'break' phát âm là /eɪ/. Ba từ còn lại phát âm là nguyên âm dài /iː/.",
+          "grammarPoint": "Phát âm nguyên âm /iː/ và /eɪ/"
+        },
+        {
+          "id": "q-10",
+          "num": 10,
+          "sectionType": "lexico_grammar",
+          "sectionTitle": "PART II: LEXICO & GRAMMAR",
+          "questionType": "multiple_choice",
+          "question": "If our school _______ solar panels on the roof last year, we would save a lot on electricity bills today.",
+          "options": [
+            "A. had installed",
+            "B. installed",
+            "C. installs",
+            "D. has installed"
+          ],
+          "answer": "A. had installed",
+          "explanation": "Câu điều kiện hỗn hợp (Mixed conditional): Giả định trái ngược quá khứ (last year -> Mệnh đề IF dùng Quá khứ hoàn thành 'had installed') dẫn đến kết quả ở hiện tại (today -> would save).",
+          "grammarPoint": "Câu điều kiện hỗn hợp (Mixed Conditional)"
+        },
+        {
+          "id": "q-11",
+          "num": 11,
+          "sectionType": "lexico_grammar",
+          "sectionTitle": "PART II: LEXICO & GRAMMAR",
+          "questionType": "multiple_choice",
+          "question": "The local council is encouraging residents to cut _______ on single-use plastic containers.",
+          "options": [
+            "A. down",
+            "B. off",
+            "C. out",
+            "D. up"
+          ],
+          "answer": "A. down",
+          "explanation": "Cụm động từ 'cut down on sth' nghĩa là cắt giảm bớt việc tiêu thụ hoặc sử dụng cái gì.",
+          "grammarPoint": "Cụm động từ (Phrasal Verbs: cut down on)"
+        },
+        {
+          "id": "q-12",
+          "num": 12,
+          "sectionType": "lexico_grammar",
+          "sectionTitle": "PART II: LEXICO & GRAMMAR",
+          "questionType": "multiple_choice",
+          "question": "Renewable energy sources, _______ wind and solar power, play an indispensable role in reducing carbon emissions.",
+          "options": [
+            "A. such as",
+            "B. as such",
+            "C. for example",
+            "D. so as to"
+          ],
+          "answer": "A. such as",
+          "explanation": "'such as' dùng để liệt kê ví dụ cụ thể ngay sau danh từ (Renewable energy sources).",
+          "grammarPoint": "Từ nối & Cụm từ liệt kê (Linking words)"
+        },
+        {
+          "id": "q-13",
+          "num": 13,
+          "sectionType": "lexico_grammar",
+          "sectionTitle": "PART II: LEXICO & GRAMMAR",
+          "questionType": "multiple_choice",
+          "question": "Rarely _______ such an inspiring community project since I joined this green youth club.",
+          "options": [
+            "A. have I witnessed",
+            "B. I have witnessed",
+            "C. did I witness",
+            "D. had I witnessed"
+          ],
+          "answer": "A. have I witnessed",
+          "explanation": "Cấu trúc đảo ngữ với trạng từ phủ định 'Rarely' đứng đầu câu: Trạng từ phủ định + Trợ động từ + S + V chính (Rarely have I witnessed...).",
+          "grammarPoint": "Đảo ngữ với trạng từ phủ định (Inversion with Negative Adverbs)"
+        },
+        {
+          "id": "q-14",
+          "num": 14,
+          "sectionType": "arrangement",
+          "sectionTitle": "PART III: ARRANGEMENT",
+          "questionType": "multiple_choice",
+          "arrangementType": "letter",
+          "arrangementItems": [
+            "a. Dear Mr. David,",
+            "b. I am writing to express my sincere interest in joining the Green Summer Volunteer Campaign.",
+            "c. I have three years of experience organizing recycling workshops for secondary students in my neighbourhood.",
+            "d. Could you please provide me with more details regarding the working schedule and required tasks?",
+            "e. I look forward to hearing from you. Sincerely, Nguyen An."
+          ],
+          "question": "Mark the letter A, B, C, or D to indicate the correct arrangement of the sentences to make a meaningful letter:",
+          "options": [
+            "A. a - b - c - d - e",
+            "B. a - c - b - d - e",
+            "C. b - a - c - d - e",
+            "D. a - d - c - b - e"
+          ],
+          "answer": "A. a - b - c - d - e",
+          "explanation": "Trật tự logic của một bức thư trang trọng: (a) Lời chào gửi -> (b) Nêu lý do viết thư -> (c) Giới thiệu kinh nghiệm/năng lực liên quan -> (d) Đề xuất xin thêm thông tin lịch trình -> (e) Lời chào kết thúc trang trọng.",
+          "grammarPoint": "Sắp xếp trật tự logic: Bức thư / Email trang trọng"
+        },
+        {
+          "id": "q-15",
+          "num": 15,
+          "sectionType": "cloze_reading",
+          "sectionTitle": "PART IV: CLOZE READING",
+          "questionType": "multiple_choice",
+          "passage": "Green living has become an increasingly popular lifestyle among teenagers around the world. By making small modifications to everyday routines, young people can make a significant (1)_______ to environmental protection. For instance, walking or cycling to school rather than asking for a motorbike ride helps reduce carbon dioxide (2)_______. Furthermore, teenagers are actively taking part in recycling campaigns where plastic bottles and used paper are collected and processed into new (3)_______. It is widely acknowledged that saving electricity by turning (4)_______ unused electronic gadgets also plays a pivotal role. As global awareness continues to expand, each individual's mindful effort will undoubtedly (5)_______ a greener and more sustainable future.",
+          "clozeNumber": 1,
+          "question": "Choose the best option to fill in blank (1):",
+          "options": [
+            "A. contribution",
+            "B. destruction",
+            "C. obstacle",
+            "D. consequence"
+          ],
+          "answer": "A. contribution",
+          "explanation": "Cụm cố định 'make a contribution to sth' nghĩa là đóng góp vào điều gì. Các từ còn lại: destruction (sự tàn phá), obstacle (trở ngại), consequence (hậu quả).",
+          "grammarPoint": "Từ vựng ngữ cảnh (Collocation: make a contribution to)"
+        },
+        {
+          "id": "q-16",
+          "num": 16,
+          "sectionType": "cloze_reading",
+          "sectionTitle": "PART IV: CLOZE READING",
+          "questionType": "multiple_choice",
+          "passage": "Green living has become an increasingly popular lifestyle among teenagers around the world. By making small modifications to everyday routines, young people can make a significant (1)_______ to environmental protection. For instance, walking or cycling to school rather than asking for a motorbike ride helps reduce carbon dioxide (2)_______. Furthermore, teenagers are actively taking part in recycling campaigns where plastic bottles and used paper are collected and processed into new (3)_______. It is widely acknowledged that saving electricity by turning (4)_______ unused electronic gadgets also plays a pivotal role. As global awareness continues to expand, each individual's mindful effort will undoubtedly (5)_______ a greener and more sustainable future.",
+          "clozeNumber": 2,
+          "question": "Choose the best option to fill in blank (2):",
+          "options": [
+            "A. emissions",
+            "B. absorptions",
+            "C. fuels",
+            "D. resources"
+          ],
+          "answer": "A. emissions",
+          "explanation": "'carbon dioxide emissions' nghĩa là lượng khí thải CO2. 'Emissions' là thuật ngữ chuẩn môi trường chỉ khí thải ra bầu khí quyển.",
+          "grammarPoint": "Từ vựng môi trường (Emissions)"
+        },
+        {
+          "id": "q-17",
+          "num": 17,
+          "sectionType": "cloze_reading",
+          "sectionTitle": "PART IV: CLOZE READING",
+          "questionType": "multiple_choice",
+          "passage": "Green living has become an increasingly popular lifestyle among teenagers around the world. By making small modifications to everyday routines, young people can make a significant (1)_______ to environmental protection. For instance, walking or cycling to school rather than asking for a motorbike ride helps reduce carbon dioxide (2)_______. Furthermore, teenagers are actively taking part in recycling campaigns where plastic bottles and used paper are collected and processed into new (3)_______. It is widely acknowledged that saving electricity by turning (4)_______ unused electronic gadgets also plays a pivotal role. As global awareness continues to expand, each individual's mindful effort will undoubtedly (5)_______ a greener and more sustainable future.",
+          "clozeNumber": 3,
+          "question": "Choose the best option to fill in blank (3):",
+          "options": [
+            "A. products",
+            "B. wastes",
+            "C. plastics",
+            "D. appliances"
+          ],
+          "answer": "A. products",
+          "explanation": "Chế biến rác tái chế thành các 'sản phẩm mới' (new products).",
+          "grammarPoint": "Từ vựng ngữ cảnh (Contextual Vocabulary)"
+        },
+        {
+          "id": "q-18",
+          "num": 18,
+          "sectionType": "cloze_reading",
+          "sectionTitle": "PART IV: CLOZE READING",
+          "questionType": "multiple_choice",
+          "passage": "Green living has become an increasingly popular lifestyle among teenagers around the world. By making small modifications to everyday routines, young people can make a significant (1)_______ to environmental protection. For instance, walking or cycling to school rather than asking for a motorbike ride helps reduce carbon dioxide (2)_______. Furthermore, teenagers are actively taking part in recycling campaigns where plastic bottles and used paper are collected and processed into new (3)_______. It is widely acknowledged that saving electricity by turning (4)_______ unused electronic gadgets also plays a pivotal role. As global awareness continues to expand, each individual's mindful effort will undoubtedly (5)_______ a greener and more sustainable future.",
+          "clozeNumber": 4,
+          "question": "Choose the best option to fill in blank (4):",
+          "options": [
+            "A. off",
+            "B. on",
+            "C. up",
+            "D. over"
+          ],
+          "answer": "A. off",
+          "explanation": "Cụm động từ 'turn off' nghĩa là tắt thiết bị điện khi không sử dụng (turning off unused electronic gadgets).",
+          "grammarPoint": "Cụm động từ (Phrasal Verb: turn off)"
+        },
+        {
+          "id": "q-19",
+          "num": 19,
+          "sectionType": "cloze_reading",
+          "sectionTitle": "PART IV: CLOZE READING",
+          "questionType": "multiple_choice",
+          "passage": "Green living has become an increasingly popular lifestyle among teenagers around the world. By making small modifications to everyday routines, young people can make a significant (1)_______ to environmental protection. For instance, walking or cycling to school rather than asking for a motorbike ride helps reduce carbon dioxide (2)_______. Furthermore, teenagers are actively taking part in recycling campaigns where plastic bottles and used paper are collected and processed into new (3)_______. It is widely acknowledged that saving electricity by turning (4)_______ unused electronic gadgets also plays a pivotal role. As global awareness continues to expand, each individual's mindful effort will undoubtedly (5)_______ a greener and more sustainable future.",
+          "clozeNumber": 5,
+          "question": "Choose the best option to fill in blank (5):",
+          "options": [
+            "A. ensure",
+            "B. prevent",
+            "C. ignore",
+            "D. damage"
+          ],
+          "answer": "A. ensure",
+          "explanation": "'ensure a greener and more sustainable future' nghĩa là bảo đảm/đem lại một tương lai xanh hơn và bền vững hơn.",
+          "grammarPoint": "Từ vựng động từ chính (ensure)"
+        },
+        {
+          "id": "q-20",
+          "num": 20,
+          "sectionType": "reading_comprehension",
+          "sectionTitle": "PART V: READING COMPREHENSION",
+          "questionType": "multiple_choice",
+          "passageTitle": "Urban Agriculture: The Future of Feeding Cities",
+          "passage": "As the world's population is projected to exceed nine billion by 2050, urban centres face unprecedented challenges regarding food supply, resource exhaustion, and spatial limitation. In response, urban agriculture—the practice of cultivating and distributing food in and around metropolitan areas—has emerged as a transformative solution.\n\nTraditional farming consumes immense volumes of fresh water and entails extensive transportation networks, which generate vast quantities of greenhouse gases before produce reaches supermarket shelves. In contrast, vertical farming systems installed inside city skyscrapers utilize advanced hydroponic and aeroponic technologies. These systems recirculate water and nutrients in closed loops, cutting water usage by up to 95 percent compared to conventional agriculture. Moreover, because crops are cultivated in controlled indoor environments, they remain immune to unpredictable weather fluctuations, prolonged droughts, and insect pests without requiring hazardous synthetic pesticides.\n\nBeyond ecological efficiency, urban farming fosters vibrant local economies and builds resilient communities. Rooftop gardens atop public schools and community centres offer hands-on educational platforms where children discover the fundamentals of nutrition and ecology. Residents who participate in local community plots report reduced psychological stress and stronger social cohesion. Although initial capital expenditure for indoor LED lighting and temperature control systems remains relatively elevated, continuing technological innovation is steadily driving costs down. It is evident that integrating urban agriculture into metropolitan master plans will be crucial for developing sustainable, self-sufficient cities of tomorrow.",
+          "readingQuestionType": "main_idea",
+          "question": "What is the primary topic of the passage?",
+          "options": [
+            "A. The potential of urban agriculture in addressing food security and sustainability",
+            "B. The historical development of conventional farming methods",
+            "C. The economic drawbacks of high-tech indoor vertical farming",
+            "D. The psychological benefits of gardening for urban children"
+          ],
+          "answer": "A. The potential of urban agriculture in addressing food security and sustainability",
+          "explanation": "Ý chính toàn bài: Bài đọc giới thiệu nông nghiệp đô thị (urban agriculture) như một giải pháp đột phá giải quyết thách thức lương thực, tiết kiệm tài nguyên và xây dựng thành phố bền vững.",
+          "grammarPoint": "Đọc hiểu: Xác định ý chính của bài đọc (Main Idea)"
+        },
+        {
+          "id": "q-21",
+          "num": 21,
+          "sectionType": "reading_comprehension",
+          "sectionTitle": "PART V: READING COMPREHENSION",
+          "questionType": "multiple_choice",
+          "passageTitle": "Urban Agriculture: The Future of Feeding Cities",
+          "passage": "As the world's population is projected to exceed nine billion by 2050, urban centres face unprecedented challenges regarding food supply, resource exhaustion, and spatial limitation. In response, urban agriculture—the practice of cultivating and distributing food in and around metropolitan areas—has emerged as a transformative solution.\n\nTraditional farming consumes immense volumes of fresh water and entails extensive transportation networks, which generate vast quantities of greenhouse gases before produce reaches supermarket shelves. In contrast, vertical farming systems installed inside city skyscrapers utilize advanced hydroponic and aeroponic technologies. These systems recirculate water and nutrients in closed loops, cutting water usage by up to 95 percent compared to conventional agriculture. Moreover, because crops are cultivated in controlled indoor environments, they remain immune to unpredictable weather fluctuations, prolonged droughts, and insect pests without requiring hazardous synthetic pesticides.\n\nBeyond ecological efficiency, urban farming fosters vibrant local economies and builds resilient communities. Rooftop gardens atop public schools and community centres offer hands-on educational platforms where children discover the fundamentals of nutrition and ecology. Residents who participate in local community plots report reduced psychological stress and stronger social cohesion. Although initial capital expenditure for indoor LED lighting and temperature control systems remains relatively elevated, continuing technological innovation is steadily driving costs down. It is evident that integrating urban agriculture into metropolitan master plans will be crucial for developing sustainable, self-sufficient cities of tomorrow.",
+          "readingQuestionType": "detail",
+          "question": "According to paragraph 2, how do vertical farming systems conserve water?",
+          "options": [
+            "A. By recirculating water and nutrients in closed loops",
+            "B. By relying primarily on heavy seasonal rainfall",
+            "C. By transporting fresh groundwater directly from rural farms",
+            "D. By minimizing the overall number of cultivated crops"
+          ],
+          "answer": "A. By recirculating water and nutrients in closed loops",
+          "explanation": "Thông tin chi tiết trong đoạn 2: 'These systems recirculate water and nutrients in closed loops, cutting water usage by up to 95 percent'.",
+          "grammarPoint": "Đọc hiểu: Tìm thông tin chi tiết (Factual Detail)"
+        },
+        {
+          "id": "q-22",
+          "num": 22,
+          "sectionType": "reading_comprehension",
+          "sectionTitle": "PART V: READING COMPREHENSION",
+          "questionType": "multiple_choice",
+          "passageTitle": "Urban Agriculture: The Future of Feeding Cities",
+          "passage": "As the world's population is projected to exceed nine billion by 2050, urban centres face unprecedented challenges regarding food supply, resource exhaustion, and spatial limitation. In response, urban agriculture—the practice of cultivating and distributing food in and around metropolitan areas—has emerged as a transformative solution.\n\nTraditional farming consumes immense volumes of fresh water and entails extensive transportation networks, which generate vast quantities of greenhouse gases before produce reaches supermarket shelves. In contrast, vertical farming systems installed inside city skyscrapers utilize advanced hydroponic and aeroponic technologies. These systems recirculate water and nutrients in closed loops, cutting water usage by up to 95 percent compared to conventional agriculture. Moreover, because crops are cultivated in controlled indoor environments, they remain immune to unpredictable weather fluctuations, prolonged droughts, and insect pests without requiring hazardous synthetic pesticides.\n\nBeyond ecological efficiency, urban farming fosters vibrant local economies and builds resilient communities. Rooftop gardens atop public schools and community centres offer hands-on educational platforms where children discover the fundamentals of nutrition and ecology. Residents who participate in local community plots report reduced psychological stress and stronger social cohesion. Although initial capital expenditure for indoor LED lighting and temperature control systems remains relatively elevated, continuing technological innovation is steadily driving costs down. It is evident that integrating urban agriculture into metropolitan master plans will be crucial for developing sustainable, self-sufficient cities of tomorrow.",
+          "readingQuestionType": "vocabulary",
+          "question": "The word 'immune' in paragraph 2 is closest in meaning to:",
+          "options": [
+            "A. unaffected",
+            "B. vulnerable",
+            "C. subject",
+            "D. resistant"
+          ],
+          "answer": "A. unaffected",
+          "explanation": "'immune to' trong ngữ cảnh bài mang nghĩa không bị ảnh hưởng/không bị tổn hại bởi thời tiết thất thường ('unaffected by unpredictable weather').",
+          "grammarPoint": "Đọc hiểu: Từ vựng trong ngữ cảnh (Vocabulary in Context)"
+        },
+        {
+          "id": "q-23",
+          "num": 23,
+          "sectionType": "reading_comprehension",
+          "sectionTitle": "PART V: READING COMPREHENSION",
+          "questionType": "multiple_choice",
+          "passageTitle": "Urban Agriculture: The Future of Feeding Cities",
+          "passage": "As the world's population is projected to exceed nine billion by 2050, urban centres face unprecedented challenges regarding food supply, resource exhaustion, and spatial limitation. In response, urban agriculture—the practice of cultivating and distributing food in and around metropolitan areas—has emerged as a transformative solution.\n\nTraditional farming consumes immense volumes of fresh water and entails extensive transportation networks, which generate vast quantities of greenhouse gases before produce reaches supermarket shelves. In contrast, vertical farming systems installed inside city skyscrapers utilize advanced hydroponic and aeroponic technologies. These systems recirculate water and nutrients in closed loops, cutting water usage by up to 95 percent compared to conventional agriculture. Moreover, because crops are cultivated in controlled indoor environments, they remain immune to unpredictable weather fluctuations, prolonged droughts, and insect pests without requiring hazardous synthetic pesticides.\n\nBeyond ecological efficiency, urban farming fosters vibrant local economies and builds resilient communities. Rooftop gardens atop public schools and community centres offer hands-on educational platforms where children discover the fundamentals of nutrition and ecology. Residents who participate in local community plots report reduced psychological stress and stronger social cohesion. Although initial capital expenditure for indoor LED lighting and temperature control systems remains relatively elevated, continuing technological innovation is steadily driving costs down. It is evident that integrating urban agriculture into metropolitan master plans will be crucial for developing sustainable, self-sufficient cities of tomorrow.",
+          "readingQuestionType": "reference",
+          "question": "The word 'they' in paragraph 2 refers to:",
+          "options": [
+            "A. crops",
+            "B. technologies",
+            "C. skyscrapers",
+            "D. networks"
+          ],
+          "answer": "A. crops",
+          "explanation": "Đoạn văn viết: 'because crops are cultivated in controlled indoor environments, they remain immune...' -> đại từ 'they' thay thế cho danh từ số nhiều 'crops' đứng trước.",
+          "grammarPoint": "Đọc hiểu: Đại từ quy chiếu (Reference Question)"
+        },
+        {
+          "id": "q-24",
+          "num": 24,
+          "sectionType": "reading_comprehension",
+          "sectionTitle": "PART V: READING COMPREHENSION",
+          "questionType": "multiple_choice",
+          "passageTitle": "Urban Agriculture: The Future of Feeding Cities",
+          "passage": "As the world's population is projected to exceed nine billion by 2050, urban centres face unprecedented challenges regarding food supply, resource exhaustion, and spatial limitation. In response, urban agriculture—the practice of cultivating and distributing food in and around metropolitan areas—has emerged as a transformative solution.\n\nTraditional farming consumes immense volumes of fresh water and entails extensive transportation networks, which generate vast quantities of greenhouse gases before produce reaches supermarket shelves. In contrast, vertical farming systems installed inside city skyscrapers utilize advanced hydroponic and aeroponic technologies. These systems recirculate water and nutrients in closed loops, cutting water usage by up to 95 percent compared to conventional agriculture. Moreover, because crops are cultivated in controlled indoor environments, they remain immune to unpredictable weather fluctuations, prolonged droughts, and insect pests without requiring hazardous synthetic pesticides.\n\nBeyond ecological efficiency, urban farming fosters vibrant local economies and builds resilient communities. Rooftop gardens atop public schools and community centres offer hands-on educational platforms where children discover the fundamentals of nutrition and ecology. Residents who participate in local community plots report reduced psychological stress and stronger social cohesion. Although initial capital expenditure for indoor LED lighting and temperature control systems remains relatively elevated, continuing technological innovation is steadily driving costs down. It is evident that integrating urban agriculture into metropolitan master plans will be crucial for developing sustainable, self-sufficient cities of tomorrow.",
+          "readingQuestionType": "inference",
+          "question": "Which of the following can be inferred from the passage?",
+          "options": [
+            "A. Technological advancements will likely make indoor urban agriculture more affordable over time.",
+            "B. Traditional agriculture will be completely eliminated before the year 2050.",
+            "C. Children learn best when they are isolated from practical agricultural work.",
+            "D. Rooftop gardens generate significant amounts of toxic pesticide runoff."
+          ],
+          "answer": "A. Technological advancements will likely make indoor urban agriculture more affordable over time.",
+          "explanation": "Suy luận từ đoạn cuối: 'continuing technological innovation is steadily driving costs down' -> các tiến bộ công nghệ sẽ giúp giảm chi phí đầu tư ban đầu theo thời gian.",
+          "grammarPoint": "Đọc hiểu: Câu hỏi suy luận (Inference Question)"
+        },
+        {
+          "id": "q-25",
+          "num": 25,
+          "sectionType": "writing_short",
+          "sectionTitle": "PART VI: WRITING - SHORT ANSWER",
+          "questionType": "short_answer",
+          "writingType": "word_formation",
+          "originalSentence": "The local government has taken strong measures to preserve the _______ heritage of the ancient quarter. (CULTURE)",
+          "question": "Write the correct form of the word given in brackets to complete the sentence:",
+          "options": [],
+          "answer": "cultural",
+          "alternativeAnswers": [
+            "cultural"
+          ],
+          "explanation": "Vị trí đứng trước danh từ 'heritage' cần một tính từ bổ nghĩa: tính từ của danh từ 'culture' là 'cultural'.",
+          "grammarPoint": "Cấu tạo từ (Word Formation: Noun -> Adjective)"
+        },
+        {
+          "id": "q-26",
+          "num": 26,
+          "sectionType": "writing_short",
+          "sectionTitle": "PART VI: WRITING - SHORT ANSWER",
+          "questionType": "short_answer",
+          "writingType": "word_formation",
+          "originalSentence": "Regular physical exercise can _______ reduce stress and enhance academic performance. (SIGNIFICANT)",
+          "question": "Write the correct form of the word given in brackets to complete the sentence:",
+          "options": [],
+          "answer": "significantly",
+          "alternativeAnswers": [
+            "significantly"
+          ],
+          "explanation": "Vị trí đứng trước động từ 'reduce' cần một phó từ/trạng từ: 'significantly' (một cách đáng kể).",
+          "grammarPoint": "Cấu tạo từ (Word Formation: Adjective -> Adverb)"
+        },
+        {
+          "id": "q-27",
+          "num": 27,
+          "sectionType": "essay_writing",
+          "sectionTitle": "PART VII: ESSAY / PARAGRAPH WRITING",
+          "questionType": "essay",
+          "essayPrompt": {
+            "minWords": 100,
+            "maxWords": 140,
+            "topic": "Write a paragraph (100 - 140 words) discussing practical actions secondary students can take to protect the environment at their school.",
+            "suggestedPoints": [
+              "Minimizing disposable plastic bottles and single-use food packaging",
+              "Turning off electrical appliances (fans, lights) when leaving classrooms",
+              "Taking active part in tree-planting campaigns and campus clean-ups"
+            ]
+          },
+          "rubric": {
+            "totalMaxScore": 10,
+            "criteria": [
+              {
+                "criterion": "Task Achievement (Trả lời đúng & đầy đủ trọng tâm đề bài)",
+                "maxScore": 2.5,
+                "description": "Đoạn văn giải quyết trọn vẹn yêu cầu đề bài, nêu được ít nhất 2-3 biện pháp cụ thể, thực tế và có câu chủ đề, câu kết rõ ràng.",
+                "bands": [
+                  {
+                    "band": "2.1 - 2.5",
+                    "detail": "Ý tưởng phát triển toàn diện, bám sát hành động cụ thể tại trường học, độ dài chuẩn 100-140 từ."
+                  },
+                  {
+                    "band": "1.5 - 2.0",
+                    "detail": "Nêu được các biện pháp bảo vệ môi trường nhưng một số ý còn chung chung hoặc thiếu dẫn chứng cụ thể."
+                  },
+                  {
+                    "band": "0.5 - 1.4",
+                    "detail": "Nội dung sơ sài, lạc đề hoặc viết quá ngắn dưới 60 từ."
+                  }
+                ]
+              },
+              {
+                "criterion": "Coherence & Cohesion (Tính liên kết, mạch lạc & từ nối)",
+                "maxScore": 2.5,
+                "description": "Bố cục đoạn văn mạch lạc: Topic sentence -> Supporting points -> Conclusion. Sử dụng linh hoạt các liên từ (Firstly, Furthermore, In addition, In conclusion).",
+                "bands": [
+                  {
+                    "band": "2.1 - 2.5",
+                    "detail": "Chuyển ý tự nhiên, logic chặt chẽ, sử dụng đa dạng các phương tiện liên kết."
+                  },
+                  {
+                    "band": "1.5 - 2.0",
+                    "detail": "Có sử dụng từ nối nhưng đôi khi lặp từ (and, but, then) hoặc chuyển đoạn hơi đột ngột."
+                  },
+                  {
+                    "band": "0.5 - 1.4",
+                    "detail": "Thiếu liên kết, các câu rời rạc không tạo thành chỉnh thể đoạn văn."
+                  }
+                ]
+              },
+              {
+                "criterion": "Lexical Resource (Vốn từ vựng & độ chính xác ngữ cảnh)",
+                "maxScore": 2.5,
+                "description": "Sử dụng từ vựng chủ đề môi trường phong phú, đúng ngữ cảnh (single-use plastics, energy waste, green clubs, mindfulness).",
+                "bands": [
+                  {
+                    "band": "2.1 - 2.5",
+                    "detail": "Vốn từ phong phú, có collocations tự nhiên, hầu như không mắc lỗi chính tả."
+                  },
+                  {
+                    "band": "1.5 - 2.0",
+                    "detail": "Từ vựng ở mức cơ bản, có một số lỗi dùng từ hoặc sai chính tả nhỏ không cản trở việc hiểu."
+                  },
+                  {
+                    "band": "0.5 - 1.4",
+                    "detail": "Vốn từ nghèo nàn, lặp từ nghiêm trọng, dịch thô từ tiếng Việt."
+                  }
+                ]
+              },
+              {
+                "criterion": "Grammatical Range & Accuracy (Độ phong phú & chuẩn xác ngữ pháp)",
+                "maxScore": 2.5,
+                "description": "Kết hợp linh hoạt các cấu trúc ngữ pháp (câu phức, câu điều kiện, mệnh đề quan hệ, danh động từ). Đảm bảo chuẩn xác về thì và chia động từ.",
+                "bands": [
+                  {
+                    "band": "2.1 - 2.5",
+                    "detail": "Sử dụng đa dạng cấu trúc đơn và phức, tỉ lệ câu đúng ngữ pháp rất cao."
+                  },
+                  {
+                    "band": "1.5 - 2.0",
+                    "detail": "Mắc một số lỗi ngữ pháp về chia động từ, mạo từ hoặc giới từ nhưng không gây hiểu nhầm."
+                  },
+                  {
+                    "band": "0.5 - 1.4",
+                    "detail": "Nhiều lỗi ngữ pháp cơ bản liên tục, câu văn bị gãy cấu trúc."
+                  }
+                ]
+              }
+            ]
+          },
+          "question": "Write a paragraph (about 100 - 140 words) about practical measures students can implement to protect the environment at their school.",
+          "options": [],
+          "answer": "[Bài mẫu tham khảo]: Protecting the school environment is a vital responsibility that every student can actively participate in through simple daily habits. Firstly, students should minimize the consumption of single-use plastics by carrying refillable water bottles and reusable food containers. Secondly, conserving electricity plays an essential role; switching off lights, projectors, and fans before leaving the classroom significantly prevents energy waste. Furthermore, students can actively participate in school green clubs by planting trees and categorizing recyclable waste during clean-up days. In conclusion, these small, consistent actions not only foster a cleaner learning atmosphere but also cultivate long-term environmental mindfulness among youths.",
+          "explanation": "Đoạn văn được chấm theo khung 4 tiêu chí chuẩn khảo thí quốc tế và Bộ GD&ĐT: Task Achievement (2.5đ), Coherence & Cohesion (2.5đ), Lexical Resource (2.5đ), Grammatical Range & Accuracy (2.5đ).",
+          "grammarPoint": "Kỹ năng viết đoạn văn lập luận (Paragraph Writing & Rubric)"
+        }
+      ]
+    },
+    {
+      "id": "ex-1",
+      "title": "Đề ôn tập: Thì Quá Khứ & Hiện Tại Hoàn Thành",
+      "grade": "Lớp 10",
+      "subject": "Tiếng Anh",
+      "questionsCount": 15,
+      "duration": "20 phút",
+      "difficulty": "Trung bình",
+      "submissions": 36,
+      "avgScore": 8.2,
+      "createdAt": "20/09/2026",
+      "status": "Đang mở",
+      "questions": [
+        {
+          "id": "q-1-1",
+          "num": 1,
+          "sectionType": "pronunciation",
+          "sectionTitle": "PART I: PRONUNCIATION & STRESS",
+          "question": "Choose the word whose underlined part is pronounced differently from the others:",
+          "options": [
+            "A. decid<u>ed</u>",
+            "B. wait<u>ed</u>",
+            "C. watch<u>ed</u>",
+            "D. invit<u>ed</u>"
+          ],
+          "answer": "C. watch<u>ed</u>",
+          "underlinedPart": "ed",
+          "ipaTranscription": "watched: /wɒtʃt/ vs decided: /dɪˈsaɪ.dɪd/, waited: /ˈweɪ.tɪd/, invited: /ɪnˈvaɪ.tɪd/",
+          "explanation": "Đuôi '-ed' trong 'watched' /wɒtʃt/ phát âm là /t/ vì sau phụ âm vô thanh /tʃ/. Các từ còn lại phát âm là /ɪd/ vì tận cùng là /t/ hoặc /d/.",
+          "grammarPoint": "Quy tắc phát âm đuôi -ed"
+        },
+        {
+          "id": "q-1-2",
+          "num": 2,
+          "question": "She _______ in this company for over five years before she moved to Da Nang.",
+          "options": [
+            "A. worked",
+            "B. had worked",
+            "C. has worked",
+            "D. was working"
+          ],
+          "answer": "B. had worked",
+          "explanation": "Hành động làm việc đã xảy ra và kéo dài trước một mốc thời gian trong quá khứ (\"before she moved\"), do đó dùng thì quá khứ hoàn thành (Past Perfect).",
+          "grammarPoint": "Thì Quá khứ hoàn thành (Past Perfect)"
+        },
+        {
+          "id": "q-1-3",
+          "num": 3,
+          "question": "I haven't heard from Nam since he _______ high school last summer.",
+          "options": [
+            "A. graduated",
+            "B. has graduated",
+            "C. had graduated",
+            "D. was graduating"
+          ],
+          "answer": "A. graduated",
+          "explanation": "Cấu trúc với \"since\": Mệnh đề chính dùng Hiện tại hoàn thành (haven't heard), mệnh đề sau \"since\" dùng Quá khứ đơn (graduated).",
+          "grammarPoint": "Cấu trúc Since trong các thì hoàn thành"
+        },
+        {
+          "id": "q-1-4",
+          "num": 4,
+          "question": "Choose the word that has the main stress placed differently from the others:",
+          "options": [
+            "A. prevent",
+            "B. receive",
+            "C. happen",
+            "D. decide"
+          ],
+          "answer": "C. happen",
+          "explanation": "'happen' có trọng âm rơi vào âm tiết thứ 1 /ˈhæp.ən/. Các từ còn lại đều có trọng âm rơi vào âm tiết thứ 2: prevent /prɪˈvent/, receive /rɪˈsiːv/, decide /dɪˈsaɪd/.",
+          "grammarPoint": "Trọng âm từ 2 âm tiết"
+        },
+        {
+          "id": "q-1-5",
+          "num": 5,
+          "question": "They _______ to Paris three times so far this year.",
+          "options": [
+            "A. went",
+            "B. have gone",
+            "C. have been",
+            "D. had gone"
+          ],
+          "answer": "C. have been",
+          "explanation": "'have been to' chỉ trải nghiệm đã từng đến nơi nào đó rồi quay về. Dấu hiệu nhận biết: 'three times so far'.",
+          "grammarPoint": "Phân biệt Have been to vs Have gone to"
+        },
+        {
+          "id": "q-1-6",
+          "num": 6,
+          "question": "By the time the fire brigade arrived, the neighbors _______ the fire.",
+          "options": [
+            "A. put out",
+            "B. had put out",
+            "C. have put out",
+            "D. was putting out"
+          ],
+          "answer": "B. had put out",
+          "explanation": "Cấu trúc By the time + quá khứ đơn, quá khứ hoàn thành (had put out).",
+          "grammarPoint": "Cấu trúc By the time"
+        },
+        {
+          "id": "q-1-7",
+          "num": 7,
+          "question": "He _______ his keys, so he couldn't get into the house yesterday evening.",
+          "options": [
+            "A. lost",
+            "B. has lost",
+            "C. had lost",
+            "D. was losing"
+          ],
+          "answer": "C. had lost",
+          "explanation": "Hành động làm mất chìa khóa xảy ra trước thời điểm không vào được nhà trong quá khứ.",
+          "grammarPoint": "Thì Quá khứ hoàn thành"
+        },
+        {
+          "id": "q-1-8",
+          "num": 8,
+          "question": "How long _______ you _______ for this international organization?",
+          "options": [
+            "A. did / work",
+            "B. have / been working",
+            "C. had / worked",
+            "D. were / working"
+          ],
+          "answer": "B. have / been working",
+          "explanation": "Hỏi về khoảng thời gian kéo dài liên tục từ quá khứ đến hiện tại dùng Hiện tại hoàn thành tiếp diễn.",
+          "grammarPoint": "Hiện tại hoàn thành tiếp diễn"
+        },
+        {
+          "id": "q-1-9",
+          "num": 9,
+          "question": "While Minh was studying in his room, his brother _______ video games.",
+          "options": [
+            "A. played",
+            "B. was playing",
+            "C. has played",
+            "D. had played"
+          ],
+          "answer": "B. was playing",
+          "explanation": "Hai hành động diễn ra song song cùng lúc trong quá khứ dùng thì Quá khứ tiếp diễn với While.",
+          "grammarPoint": "Hành động song song trong Quá khứ"
+        },
+        {
+          "id": "q-1-10",
+          "num": 10,
+          "question": "This is the first time I _______ such an inspiring lecture on environmental protection.",
+          "options": [
+            "A. heard",
+            "B. have heard",
+            "C. had heard",
+            "D. hear"
+          ],
+          "answer": "B. have heard",
+          "explanation": "Cấu trúc It/This is the first time + S + have/has + V3/ed.",
+          "grammarPoint": "Cấu trúc This is the first time"
+        },
+        {
+          "id": "q-1-11",
+          "num": 11,
+          "question": "When we reached the stadium, the football match _______.",
+          "options": [
+            "A. already started",
+            "B. had already started",
+            "C. has already started",
+            "D. is starting"
+          ],
+          "answer": "B. had already started",
+          "explanation": "Trận đấu bắt đầu trước khi chúng tôi đến sân vận động, dùng Quá khứ hoàn thành.",
+          "grammarPoint": "Thì Quá khứ hoàn thành với When"
+        },
+        {
+          "id": "q-1-12",
+          "num": 12,
+          "question": "Up to now, the team _______ five major green community projects.",
+          "options": [
+            "A. completed",
+            "B. has completed",
+            "C. had completed",
+            "D. completes"
+          ],
+          "answer": "B. has completed",
+          "explanation": "'Up to now' là dấu hiệu nhận biết của thì Hiện tại hoàn thành.",
+          "grammarPoint": "Dấu hiệu nhận biết Hiện tại hoàn thành"
+        },
+        {
+          "id": "q-1-13",
+          "num": 13,
+          "question": "She _______ tired yesterday because she _______ late the previous night.",
+          "options": [
+            "A. was / had worked",
+            "B. had been / worked",
+            "C. is / worked",
+            "D. was / has worked"
+          ],
+          "answer": "A. was / had worked",
+          "explanation": "Hành động thức khuya làm việc xảy ra trước (had worked) dẫn đến kết quả mệt mỏi ngày hôm qua (was).",
+          "grammarPoint": "Nguyên nhân - kết quả trong quá khứ"
+        },
+        {
+          "id": "q-1-14",
+          "num": 14,
+          "question": "No sooner _______ home than the heavy rain began.",
+          "options": [
+            "A. he arrived",
+            "B. had he arrived",
+            "C. did he arrive",
+            "D. he had arrived"
+          ],
+          "answer": "B. had he arrived",
+          "explanation": "Cấu trúc đảo ngữ: No sooner + had + S + V3/ed + than + S + V2/ed.",
+          "grammarPoint": "Đảo ngữ với No sooner ... than"
+        },
+        {
+          "id": "q-1-15",
+          "num": 15,
+          "question": "We _______ each other since our elementary school days.",
+          "options": [
+            "A. know",
+            "B. knew",
+            "C. have known",
+            "D. had known"
+          ],
+          "answer": "C. have known",
+          "explanation": "Động từ chỉ trạng thái tri giác \"know\" không chia tiếp diễn, dùng Hiện tại hoàn thành với \"since\".",
+          "grammarPoint": "Hiện tại hoàn thành với State Verbs"
+        }
+      ]
+    },
+    {
+      "id": "ex-2",
+      "title": "Chuyên đề Mệnh Đề Quan Hệ (Relative Clauses)",
+      "grade": "Lớp 12",
+      "subject": "Tiếng Anh",
+      "questionsCount": 20,
+      "duration": "30 phút",
+      "difficulty": "Vận dụng",
+      "submissions": 41,
+      "avgScore": 7.6,
+      "createdAt": "18/09/2026",
+      "status": "Đang mở",
+      "questions": [
+        {
+          "id": "q-2-1",
+          "num": 1,
+          "question": "The scientist _______ research led to this breakthrough received an international award.",
+          "options": [
+            "A. who",
+            "B. whom",
+            "C. whose",
+            "D. which"
+          ],
+          "answer": "C. whose",
+          "explanation": "'whose research' mang nghĩa sở hữu: nghiên cứu của nhà khoa học đó.",
+          "grammarPoint": "Đại từ quan hệ chỉ sở hữu (Whose)"
+        },
+        {
+          "id": "q-2-2",
+          "num": 2,
+          "question": "The young athletes _______ in the national championship showed remarkable determination.",
+          "options": [
+            "A. competed",
+            "B. competing",
+            "C. were competed",
+            "D. who competing"
+          ],
+          "answer": "B. competing",
+          "explanation": "Rút gọn mệnh đề quan hệ dạng chủ động (who competed -> competing).",
+          "grammarPoint": "Rút gọn mệnh đề quan hệ với V-ing"
+        },
+        {
+          "id": "q-2-3",
+          "num": 3,
+          "question": "This is the most impressive historical novel _______ I have ever read.",
+          "options": [
+            "A. that",
+            "B. which",
+            "C. who",
+            "D. whom"
+          ],
+          "answer": "A. that",
+          "explanation": "Sau tính từ so sánh nhất (\"the most impressive\"), ta ưu tiên dùng đại từ quan hệ \"that\".",
+          "grammarPoint": "Đại từ quan hệ That sau so sánh nhất"
+        },
+        {
+          "id": "q-2-4",
+          "num": 4,
+          "question": "The building _______ was destroyed in the storm has now been completely rebuilt.",
+          "options": [
+            "A. who",
+            "B. which",
+            "C. whom",
+            "D. whose"
+          ],
+          "answer": "B. which",
+          "explanation": "'The building' là danh từ chỉ vật đóng vai trò chủ ngữ trong mệnh đề quan hệ, dùng 'which' hoặc 'that'.",
+          "grammarPoint": "Đại từ quan hệ Which chỉ vật"
+        },
+        {
+          "id": "q-2-5",
+          "num": 5,
+          "question": "Mr. David, _______ you met at the education workshop yesterday, is our new dean.",
+          "options": [
+            "A. whom",
+            "B. which",
+            "C. whose",
+            "D. what"
+          ],
+          "answer": "A. whom",
+          "explanation": "'whom' thay thế cho tân ngữ chỉ người sau dấu phẩy (mệnh đề quan hệ không xác định).",
+          "grammarPoint": "Đại từ quan hệ Whom trong mệnh đề không xác định"
+        },
+        {
+          "id": "q-2-6",
+          "num": 6,
+          "question": "The village _______ my grandparents grew up is famous for traditional pottery.",
+          "options": [
+            "A. which",
+            "B. where",
+            "C. that",
+            "D. when"
+          ],
+          "answer": "B. where",
+          "explanation": "'where' thay cho trạng từ chỉ nơi chốn (in which/in the village).",
+          "grammarPoint": "Trạng từ quan hệ Where"
+        },
+        {
+          "id": "q-2-7",
+          "num": 7,
+          "question": "I will never forget the day _______ I received the admission letter from university.",
+          "options": [
+            "A. which",
+            "B. when",
+            "C. where",
+            "D. why"
+          ],
+          "answer": "B. when",
+          "explanation": "'the day' chỉ thời gian, sau đó dùng trạng từ quan hệ 'when'.",
+          "grammarPoint": "Trạng từ quan hệ When"
+        },
+        {
+          "id": "q-2-8",
+          "num": 8,
+          "question": "The reason _______ she decided to study environmental engineering is very inspiring.",
+          "options": [
+            "A. why",
+            "B. which",
+            "C. where",
+            "D. what"
+          ],
+          "answer": "A. why",
+          "explanation": "'The reason why' là cấu trúc chỉ lý do nguyên nhân.",
+          "grammarPoint": "Trạng từ quan hệ Why"
+        },
+        {
+          "id": "q-2-9",
+          "num": 9,
+          "question": "The documents _______ by the committee yesterday will be made public next week.",
+          "options": [
+            "A. approving",
+            "B. approved",
+            "C. was approved",
+            "D. were approving"
+          ],
+          "answer": "B. approved",
+          "explanation": "Rút gọn mệnh đề quan hệ dạng bị động (which were approved -> approved).",
+          "grammarPoint": "Rút gọn mệnh đề quan hệ dạng Bị động (V3/ed)"
+        },
+        {
+          "id": "q-2-10",
+          "num": 10,
+          "question": "He is the only candidate _______ meets all the stringent requirements of the scholarship.",
+          "options": [
+            "A. who",
+            "B. which",
+            "C. that",
+            "D. whom"
+          ],
+          "answer": "C. that",
+          "explanation": "Sau \"the only\" bắt buộc dùng đại từ quan hệ \"that\".",
+          "grammarPoint": "Dùng That sau the only / all / none"
+        },
+        {
+          "id": "q-2-11",
+          "num": 11,
+          "question": "Neil Armstrong was the first person _______ on the Moon.",
+          "options": [
+            "A. walking",
+            "B. to walk",
+            "C. walked",
+            "D. who walking"
+          ],
+          "answer": "B. to walk",
+          "explanation": "Rút gọn mệnh đề quan hệ sau the first/second/last/only dùng To-Infinitive.",
+          "grammarPoint": "Rút gọn mệnh đề quan hệ với To-Infinitive"
+        },
+        {
+          "id": "q-2-12",
+          "num": 12,
+          "question": "The woman to _______ you were speaking on the phone is the head of department.",
+          "options": [
+            "A. who",
+            "B. whom",
+            "C. that",
+            "D. whose"
+          ],
+          "answer": "B. whom",
+          "explanation": "Sau giới từ (to) chỉ người bắt buộc dùng \"whom\", không được dùng \"who\" hay \"that\".",
+          "grammarPoint": "Giới từ đứng trước đại từ quan hệ (preposition + whom)"
+        },
+        {
+          "id": "q-2-13",
+          "num": 13,
+          "question": "The solar project, _______ was funded by international donors, has reduced local emissions by 40%.",
+          "options": [
+            "A. that",
+            "B. which",
+            "C. what",
+            "D. whose"
+          ],
+          "answer": "B. which",
+          "explanation": "Mệnh đề quan hệ không xác định có dấu phẩy không được dùng \"that\", phải dùng \"which\".",
+          "grammarPoint": "Mệnh đề quan hệ không xác định với Which"
+        },
+        {
+          "id": "q-2-14",
+          "num": 14,
+          "question": "All the students _______ essays scored above 8.5 will be awarded certificates.",
+          "options": [
+            "A. whose",
+            "B. who",
+            "C. whom",
+            "D. which"
+          ],
+          "answer": "A. whose",
+          "explanation": "'whose essays' biểu đạt quyền sở hữu bài viết của các em học sinh.",
+          "grammarPoint": "Đại từ sở hữu Whose"
+        },
+        {
+          "id": "q-2-15",
+          "num": 15,
+          "question": "The software company _______ head office is located in Da Nang has expanded globally.",
+          "options": [
+            "A. which",
+            "B. whose",
+            "C. where",
+            "D. that"
+          ],
+          "answer": "B. whose",
+          "explanation": "'whose head office': trụ sở chính của công ty đó (sở hữu).",
+          "grammarPoint": "Whose chỉ sở hữu của tổ chức/sự vật"
+        },
+        {
+          "id": "q-2-16",
+          "num": 16,
+          "question": "He passed the graduation exam with flying colors, _______ made his parents very proud.",
+          "options": [
+            "A. which",
+            "B. that",
+            "C. what",
+            "D. who"
+          ],
+          "answer": "A. which",
+          "explanation": "'which' đứng sau dấu phẩy thay thế cho toàn bộ mệnh đề phía trước.",
+          "grammarPoint": "Which thay thế cho cả mệnh đề đứng trước"
+        },
+        {
+          "id": "q-2-17",
+          "num": 17,
+          "question": "The hotel _______ we stayed during our trip to Nha Trang was very close to the beach.",
+          "options": [
+            "A. which",
+            "B. in which",
+            "C. where in",
+            "D. that in"
+          ],
+          "answer": "B. in which",
+          "explanation": "'in which' tương đương với 'where', bổ nghĩa cho 'The hotel'.",
+          "grammarPoint": "In which thay cho Where"
+        },
+        {
+          "id": "q-2-18",
+          "num": 18,
+          "question": "Do you know the boy _______ bicycle was stolen outside the library?",
+          "options": [
+            "A. whose",
+            "B. whom",
+            "C. which",
+            "D. who"
+          ],
+          "answer": "A. whose",
+          "explanation": "'whose bicycle': chiếc xe đạp của bạn nam đó.",
+          "grammarPoint": "Đại từ sở hữu Whose"
+        },
+        {
+          "id": "q-2-19",
+          "num": 19,
+          "question": "The books _______ on the top shelf need to be cataloged by tomorrow.",
+          "options": [
+            "A. lying",
+            "B. laid",
+            "C. to lie",
+            "D. were lying"
+          ],
+          "answer": "A. lying",
+          "explanation": "Rút gọn mệnh đề quan hệ chủ động của nội động từ lie: which are lying -> lying.",
+          "grammarPoint": "Rút gọn mệnh đề quan hệ với phân từ hiện tại"
+        },
+        {
+          "id": "q-2-20",
+          "num": 20,
+          "question": "The environmental campaign, in _______ hundreds of local students participated, was a resounding success.",
+          "options": [
+            "A. which",
+            "B. that",
+            "C. whom",
+            "D. where"
+          ],
+          "answer": "A. which",
+          "explanation": "Cụm participate in -> in which. Giới từ đứng trước đại từ chỉ vật là \"which\".",
+          "grammarPoint": "Giới từ đi với Which (in which)"
+        }
+      ]
+    },
+    {
+      "id": "ex-3",
+      "title": "Đề Khảo Sát Năng Lực Đầu Năm Học 2026 - 2027",
+      "grade": "Lớp 10",
+      "subject": "Tiếng Anh",
+      "questionsCount": 40,
+      "duration": "50 phút",
+      "difficulty": "Thông hiểu",
+      "submissions": 38,
+      "avgScore": 6.9,
+      "createdAt": "10/09/2026",
+      "status": "Đã đóng",
+      "questions": [
+        {
+          "id": "q-3-1",
+          "num": 1,
+          "question": "Lan usually _______ to school by bicycle, but today she is taking the bus.",
+          "options": [
+            "A. goes",
+            "B. go",
+            "C. is going",
+            "D. went"
+          ],
+          "answer": "A. goes",
+          "explanation": "Thì Hiện tại đơn diễn tả thói quen lặp đi lặp lại với dấu hiệu \"usually\", chủ ngữ \"Lan\" số ít chia \"goes\".",
+          "grammarPoint": "Thì Hiện tại đơn (Present Simple)"
+        },
+        {
+          "id": "q-3-2",
+          "num": 2,
+          "question": "Choose the word whose underlined part is pronounced differently: decid<u>ed</u>, wait<u>ed</u>, clean<u>ed</u>, invit<u>ed</u>",
+          "options": [
+            "A. decided",
+            "B. waited",
+            "C. cleaned",
+            "D. invited"
+          ],
+          "answer": "C. cleaned",
+          "explanation": "Đuôi '-ed' trong 'cleaned' /kliːnd/ phát âm là /d/. Các từ còn lại phát âm là /ɪd/.",
+          "grammarPoint": "Phát âm đuôi -ed"
+        },
+        {
+          "id": "q-3-3",
+          "num": 3,
+          "question": "My father _______ in the garden when it suddenly started to rain heavily.",
+          "options": [
+            "A. worked",
+            "B. was working",
+            "C. has worked",
+            "D. had worked"
+          ],
+          "answer": "B. was working",
+          "explanation": "Hành động đang diễn ra trong quá khứ (was working) thì có hành động khác xen vào (started to rain).",
+          "grammarPoint": "Quá khứ tiếp diễn kết hợp Quá khứ đơn"
+        },
+        {
+          "id": "q-3-4",
+          "num": 4,
+          "question": "We _______ each other since we attended elementary school.",
+          "options": [
+            "A. know",
+            "B. have known",
+            "C. knew",
+            "D. had known"
+          ],
+          "answer": "B. have known",
+          "explanation": "Dấu hiệu \"since\" kết hợp thì Hiện tại hoàn thành.",
+          "grammarPoint": "Thì Hiện tại hoàn thành với Since"
+        },
+        {
+          "id": "q-3-5",
+          "num": 5,
+          "question": "If you _______ hard, you will pass the final examination with high marks.",
+          "options": [
+            "A. study",
+            "B. studied",
+            "C. will study",
+            "D. have studied"
+          ],
+          "answer": "A. study",
+          "explanation": "Câu điều kiện loại 1: Mệnh đề IF chia thì Hiện tại đơn.",
+          "grammarPoint": "Câu điều kiện loại 1"
+        },
+        {
+          "id": "q-3-6",
+          "num": 6,
+          "question": "The school library _______ by the municipal government last year.",
+          "options": [
+            "A. built",
+            "B. was built",
+            "C. has built",
+            "D. is built"
+          ],
+          "answer": "B. was built",
+          "explanation": "Câu bị động thì Quá khứ đơn: was/were + V3/ed.",
+          "grammarPoint": "Câu bị động Quá khứ đơn"
+        },
+        {
+          "id": "q-3-7",
+          "num": 7,
+          "question": "Choose the word with different stress pattern: 'modern', 'polite', 'famous', 'active'.",
+          "options": [
+            "A. modern",
+            "B. polite",
+            "C. famous",
+            "D. active"
+          ],
+          "answer": "B. polite",
+          "explanation": "'polite' trọng âm âm tiết 2 /pəˈlaɪt/, các từ còn lại trọng âm âm tiết 1.",
+          "grammarPoint": "Trọng âm từ 2 âm tiết"
+        },
+        {
+          "id": "q-3-8",
+          "num": 8,
+          "question": "Nam is very interested _______ playing chess in his free time.",
+          "options": [
+            "A. on",
+            "B. in",
+            "C. at",
+            "D. about"
+          ],
+          "answer": "B. in",
+          "explanation": "Cụm tính từ đi kèm giới từ: 'be interested in + V-ing'.",
+          "grammarPoint": "Giới từ đi sau tính từ"
+        },
+        {
+          "id": "q-3-9",
+          "num": 9,
+          "question": "She asked me where I _______ from.",
+          "options": [
+            "A. come",
+            "B. came",
+            "C. am coming",
+            "D. have come"
+          ],
+          "answer": "B. came",
+          "explanation": "Câu gián tiếp lùi thì từ Hiện tại đơn sang Quá khứ đơn.",
+          "grammarPoint": "Câu tường thuật gián tiếp"
+        },
+        {
+          "id": "q-3-10",
+          "num": 10,
+          "question": "Although the weather was bad, they _______ their outdoor camping trip.",
+          "options": [
+            "A. enjoyed",
+            "B. enjoy",
+            "C. will enjoy",
+            "D. have enjoyed"
+          ],
+          "answer": "A. enjoyed",
+          "explanation": "Mệnh đề nhượng bộ với \"Although\", vế sau chia thì Quá khứ đơn hòa hợp thì.",
+          "grammarPoint": "Liên từ chỉ sự nhượng bộ Although"
+        },
+        {
+          "id": "q-3-11",
+          "num": 11,
+          "question": "You should avoid _______ too much fast food because it is harmful to health.",
+          "options": [
+            "A. eat",
+            "B. eating",
+            "C. to eat",
+            "D. ate"
+          ],
+          "answer": "B. eating",
+          "explanation": "Động từ 'avoid + V-ing'.",
+          "grammarPoint": "Danh động từ sau avoid"
+        },
+        {
+          "id": "q-3-12",
+          "num": 12,
+          "question": "This problem is _______ than the previous one we solved yesterday.",
+          "options": [
+            "A. more difficult",
+            "B. most difficult",
+            "C. as difficult",
+            "D. difficult"
+          ],
+          "answer": "A. more difficult",
+          "explanation": "So sánh hơn của tính từ dài: more + adj + than.",
+          "grammarPoint": "So sánh hơn với tính từ dài"
+        },
+        {
+          "id": "q-3-13",
+          "num": 13,
+          "question": "The teacher told us _______ quiet during the test.",
+          "options": [
+            "A. keep",
+            "B. to keep",
+            "C. keeping",
+            "D. kept"
+          ],
+          "answer": "B. to keep",
+          "explanation": "Cấu trúc 'tell someone to do something'.",
+          "grammarPoint": "Động từ nguyên mẫu có to sau tell"
+        },
+        {
+          "id": "q-3-14",
+          "num": 14,
+          "question": "He has lived in Hanoi _______ ten years.",
+          "options": [
+            "A. since",
+            "B. for",
+            "C. in",
+            "D. at"
+          ],
+          "answer": "B. for",
+          "explanation": "'for' đi với khoảng thời gian trong thì Hiện tại hoàn thành.",
+          "grammarPoint": "For và khoảng thời gian"
+        },
+        {
+          "id": "q-3-15",
+          "num": 15,
+          "question": "Neither Minh nor his friends _______ going to the music concert tonight.",
+          "options": [
+            "A. is",
+            "B. are",
+            "C. was",
+            "D. were"
+          ],
+          "answer": "B. are",
+          "explanation": "Quy tắc hòa hợp chủ vị với Neither ... nor chia theo chủ ngữ gần nhất (\"his friends\" số nhiều -> are).",
+          "grammarPoint": "Hòa hợp Chủ - Vị với Neither ... nor"
+        },
+        {
+          "id": "q-3-16",
+          "num": 16,
+          "question": "You haven't finished your homework yet, _______?",
+          "options": [
+            "A. have you",
+            "B. haven't you",
+            "C. do you",
+            "D. did you"
+          ],
+          "answer": "A. have you",
+          "explanation": "Câu hỏi đuôi: Vế trước phủ định (haven't), vế đuôi khẳng định (have you).",
+          "grammarPoint": "Câu hỏi đuôi (Tag questions)"
+        },
+        {
+          "id": "q-3-17",
+          "num": 17,
+          "question": "She is fond _______ reading science fiction books.",
+          "options": [
+            "A. with",
+            "B. of",
+            "C. at",
+            "D. on"
+          ],
+          "answer": "B. of",
+          "explanation": "Cụm 'be fond of + V-ing'.",
+          "grammarPoint": "Cụm giới từ Be fond of"
+        },
+        {
+          "id": "q-3-18",
+          "num": 18,
+          "question": "Unless it _______ tomorrow, we will have a picnic in the park.",
+          "options": [
+            "A. rains",
+            "B. rain",
+            "C. will rain",
+            "D. rained"
+          ],
+          "answer": "A. rains",
+          "explanation": "'Unless' = 'If ... not', mệnh đề sau Unless chia hiện tại đơn (it rains).",
+          "grammarPoint": "Cấu trúc Unless"
+        },
+        {
+          "id": "q-3-19",
+          "num": 19,
+          "question": "The film was so _______ that many people left the cinema early.",
+          "options": [
+            "A. boring",
+            "B. bored",
+            "C. bore",
+            "D. boredom"
+          ],
+          "answer": "A. boring",
+          "explanation": "Tính từ đuôi '-ing' chỉ tính chất của bộ phim ('boring').",
+          "grammarPoint": "Phân biệt tính từ -ing và -ed"
+        },
+        {
+          "id": "q-3-20",
+          "num": 20,
+          "question": "He suggested _______ by bus instead of taking a taxi to save money.",
+          "options": [
+            "A. travel",
+            "B. travelling",
+            "C. to travel",
+            "D. travelled"
+          ],
+          "answer": "B. travelling",
+          "explanation": "Cấu trúc 'suggest + V-ing'.",
+          "grammarPoint": "Cấu trúc Suggest + V-ing"
+        }
+      ]
+    }
+  ],
+  "students": [
+    {
+      "id": "s-imp-1790068941802-0",
+      "name": "Đào Huyền Anh",
+      "studentId": "2004669199",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0918728779",
+      "parentPhone": "0918728779",
+      "completedExams": 0,
+      "notes": "Học sinh chăm chỉ, nắm chắc ngữ pháp cơ bản"
+    },
+    {
+      "id": "s-imp-1790068941802-1",
+      "name": "Lê Như Quỳnh Anh",
+      "studentId": "2403192662",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0978257207",
+      "parentPhone": "0978257207",
+      "completedExams": 0,
+      "notes": "Cần rèn thêm kỹ năng làm đề trắc nghiệm"
+    },
+    {
+      "id": "s-imp-1790068941802-2",
+      "name": "Nguyễn Hồ Phương Anh",
+      "studentId": "2004669259",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0332399435",
+      "parentPhone": "0332399435",
+      "completedExams": 0,
+      "notes": "Mục tiêu điểm 9+ kỳ thi THPT Quốc Gia"
+    },
+    {
+      "id": "s-imp-1790068941802-3",
+      "name": "Nguyễn Tư Hoài Anh",
+      "studentId": "2403192663",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0979283677",
+      "parentPhone": "0979283677",
+      "completedExams": 0,
+      "notes": "Tiến bộ rõ rệt phần đọc hiểu Reading"
+    },
+    {
+      "id": "s-imp-1790068941802-4",
+      "name": "Hà Thùy Bảo Châu",
+      "studentId": "2004669328",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0378000858",
+      "parentPhone": "0378000858",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-5",
+      "name": "Lê Dũng",
+      "studentId": "2004669360",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0965221548",
+      "parentPhone": "0965221548",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-6",
+      "name": "Nguyễn Ngọc Ánh Dương",
+      "studentId": "2004669185",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0975880788",
+      "parentPhone": "0975880788",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-7",
+      "name": "Nguyễn Ngọc Bảo Hân",
+      "studentId": "2004669515",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0903742794",
+      "parentPhone": "0903742794",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-8",
+      "name": "Nguyễn Minh Huy",
+      "studentId": "2004669480",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0918864037",
+      "parentPhone": "0918864037",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-9",
+      "name": "Nguyễn Lương Ngọc Huyền",
+      "studentId": "2004669198",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0764018355",
+      "parentPhone": "0764018355",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-10",
+      "name": "Trần Chấn Hưng",
+      "studentId": "2403192664",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0907990070",
+      "parentPhone": "0907990070",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-11",
+      "name": "Nguyễn Tấn Kiệt",
+      "studentId": "2004669297",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0784080970",
+      "parentPhone": "0784080970",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-12",
+      "name": "Trịnh Tuấn Kiệt",
+      "studentId": "2403192665",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0932612538",
+      "parentPhone": "0932612538",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-13",
+      "name": "Vũ Tuấn Kiệt",
+      "studentId": "2004669188",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0973687939",
+      "parentPhone": "0973687939",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-14",
+      "name": "Trần Kim Linh",
+      "studentId": "2403192666",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0797015210",
+      "parentPhone": "0797015210",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-15",
+      "name": "Mai Trần Thảo Ly",
+      "studentId": "2403192667",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0333177186",
+      "parentPhone": "0333177186",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-16",
+      "name": "Huỳnh Nguyễn Quốc Minh",
+      "studentId": "2403192668",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0347078498",
+      "parentPhone": "0347078498",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-17",
+      "name": "Đặng Thảo My",
+      "studentId": "2403192669",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0986107188",
+      "parentPhone": "0986107188",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-18",
+      "name": "Nguyễn Trà My",
+      "studentId": "2004669415",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0937478067",
+      "parentPhone": "0355443282",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-19",
+      "name": "Đoàn Khánh Ngọc",
+      "studentId": "2004669342",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0334452864",
+      "parentPhone": "0334452864",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-20",
+      "name": "Nguyễn Hoàng Bảo Ngọc",
+      "studentId": "2403192671",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0334592785",
+      "parentPhone": "0334592785",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-21",
+      "name": "Nguyễn Như Ngọc",
+      "studentId": "2004669475",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0972754414",
+      "parentPhone": "0972754414",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-22",
+      "name": "Đào Lê Yến Nhi",
+      "studentId": "2403192672",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0937554816",
+      "parentPhone": "0937554816",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-23",
+      "name": "Phạm Hoàng Yến Nhung",
+      "studentId": "2403192676",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0909407799",
+      "parentPhone": "0909407799",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-24",
+      "name": "Nguyễn Ngọc Yến Như",
+      "studentId": "2403192673",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0977604038",
+      "parentPhone": "0977604038",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-25",
+      "name": "Nguyễn Thị Hạnh Như",
+      "studentId": "2403192674",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0933785550",
+      "parentPhone": "0933785550",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-26",
+      "name": "Dương Thế Phong",
+      "studentId": "2403192677",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0907675863",
+      "parentPhone": "0907675863",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-27",
+      "name": "Trương Gia Phúc",
+      "studentId": "2503748389",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0914888540",
+      "parentPhone": "0914888540",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-28",
+      "name": "Vũ Nguyên Phúc",
+      "studentId": "2403192678",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0839050211",
+      "parentPhone": "0839050211",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-29",
+      "name": "Phạm Thụy Bảo Quyên",
+      "studentId": "2004669369",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0977788779",
+      "parentPhone": "0977788779",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-30",
+      "name": "Nguyễn Nhã Thùy",
+      "studentId": "2403192679",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0785274144",
+      "parentPhone": "0785274144",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-31",
+      "name": "Nguyễn Anh Thư",
+      "studentId": "2004669467",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0979412046",
+      "parentPhone": "0979412046",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-32",
+      "name": "Hoàng Anh Tuấn",
+      "studentId": "2403192682",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0942007037",
+      "parentPhone": "0942007037",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-33",
+      "name": "Bạch Gia Tuệ",
+      "studentId": "2403192683",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0909886825",
+      "parentPhone": "0909886825",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-34",
+      "name": "Bùi Lê Hải Uyên",
+      "studentId": "2004669162",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0983316539",
+      "parentPhone": "0983316539",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-35",
+      "name": "Nguyễn Thị Lệ Xuân",
+      "studentId": "2403192684",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0946156672",
+      "parentPhone": "0946156672",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-36",
+      "name": "Dương Quốc Đại",
+      "studentId": "2403192629",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0867574711",
+      "parentPhone": "0867574711",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    },
+    {
+      "id": "s-imp-1790068941802-37",
+      "name": "Nguyễn Đức Dũng",
+      "studentId": "2004669157",
+      "classId": "c-1790068920256",
+      "className": "Lớp 12G09",
+      "progress": 0,
+      "lastScore": 0,
+      "status": "Chưa làm",
+      "phone": "0979865221",
+      "parentPhone": "0979865221",
+      "completedExams": 0,
+      "notes": "Học sinh nhập từ file Excel"
+    }
+  ],
+  "tasks": [],
+  "submissions": [],
+  "aiUsage": {
+    "used": 1,
+    "limit": 5
+  }
+}
