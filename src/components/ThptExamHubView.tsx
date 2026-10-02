@@ -66,6 +66,7 @@ interface ThptExamHubViewProps {
   onSaveSubmissions?: (subs: SubmissionItem[]) => void;
   onShowToast: (msg: string, type?: 'success' | 'info') => void;
   onOpenAiModal: () => void;
+  onOpenManualModal?: () => void;
 }
 
 export const ThptExamHubView: React.FC<ThptExamHubViewProps> = ({
@@ -76,7 +77,8 @@ export const ThptExamHubView: React.FC<ThptExamHubViewProps> = ({
   onAssignExam,
   onSaveSubmissions,
   onShowToast,
-  onOpenAiModal
+  onOpenAiModal,
+  onOpenManualModal
 }) => {
   // Saved exams list in THPT bank (synced with localStorage & allExams)
   const [examList, setExamList] = useState<ExamItem[]>(() => {
@@ -1002,6 +1004,21 @@ export const ThptExamHubView: React.FC<ThptExamHubViewProps> = ({
               >
                 <Sparkles className="w-4 h-4 text-amber-300 fill-amber-300 animate-pulse" />
                 <span>+ Tạo đề AI chuẩn Bộ 2026</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  if (onOpenManualModal) {
+                    onOpenManualModal();
+                  } else {
+                    onOpenAiModal();
+                  }
+                }}
+                className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white rounded-2xl font-black text-xs shadow-lg shadow-amber-500/25 transition cursor-pointer active:scale-95"
+              >
+                <Plus className="w-4 h-4 text-amber-200" />
+                <span>+ Tạo đề thủ công</span>
               </button>
 
               <button

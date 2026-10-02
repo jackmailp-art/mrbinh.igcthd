@@ -36,6 +36,10 @@ export const INITIAL_EXAMS: ExamItem[] = [
     avgScore: 8.2,
     createdAt: '20/09/2026',
     status: 'Đang mở',
+    assignedClasses: ['Lớp 12G09', 'Lớp 11A1'],
+    assignedClassIds: ['c-1790068920256', 'c-1790068920257'],
+    deadline: 'Hôm nay 23:59 (Còn 4 giờ)',
+    deadlineTime: '23:59',
     questions: [
       {
         id: 'q-1-1',
@@ -190,6 +194,10 @@ export const INITIAL_EXAMS: ExamItem[] = [
     avgScore: 7.6,
     createdAt: '18/09/2026',
     status: 'Đang mở',
+    assignedClasses: ['Lớp 12G09'],
+    assignedClassIds: ['c-1790068920256'],
+    deadline: 'Ngày mai 17:00 (Còn 21 giờ)',
+    deadlineTime: '17:00',
     questions: [
       {
         id: 'q-2-1',

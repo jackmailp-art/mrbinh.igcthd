@@ -19,7 +19,9 @@ import {
   ListOrdered,
   Shuffle,
   RotateCcw,
-  Sparkles
+  Sparkles,
+  FileSpreadsheet,
+  Users
 } from 'lucide-react';
 import { ExamItem } from '../types';
 import { AudioPlayerControl } from './AudioPlayerControl';
@@ -36,6 +38,7 @@ interface ExamPreviewModalProps {
   onClose: () => void;
   onAssignExam: (exam: ExamItem) => void;
   onUpdateExam?: (exam: ExamItem) => void;
+  onViewExamResults?: (exam: ExamItem) => void;
 }
 
 export const ExamPreviewModal: React.FC<ExamPreviewModalProps> = ({
@@ -43,6 +46,7 @@ export const ExamPreviewModal: React.FC<ExamPreviewModalProps> = ({
   onClose,
   onAssignExam,
   onUpdateExam,
+  onViewExamResults,
 }) => {
   const [showAnswers, setShowAnswers] = useState(true);
   const [copied, setCopied] = useState(false);
@@ -512,13 +516,31 @@ export const ExamPreviewModal: React.FC<ExamPreviewModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-200 transition cursor-pointer"
-          >
-            Đóng xem trước
-          </button>
+        <div className="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between flex-wrap gap-2">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onClose}
+              className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-200 transition cursor-pointer"
+            >
+              Đóng xem trước
+            </button>
+
+            {/* Quick Button to View Class Results & Submissions if Exam is Assigned */}
+            {onViewExamResults && (
+              <button
+                type="button"
+                onClick={() => {
+                  onViewExamResults(currentExam);
+                  onClose();
+                }}
+                className="flex items-center gap-1.5 px-3.5 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-xl text-xs font-bold transition shadow-2xs cursor-pointer active:scale-95"
+                title="Xem danh sách học sinh từng lớp, bài làm của các em và Xuất file Excel (.xlsx)"
+              >
+                <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
+                <span>DS Học Sinh & Bài Làm (Xuất Excel)</span>
+              </button>
+            )}
+          </div>
 
           <button
             onClick={() => {

@@ -795,7 +795,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                     required
                     value={regStudentName}
                     onChange={(e) => setRegStudentName(e.target.value)}
-                    placeholder="VD: Nguyễn Văn An"
+                    placeholder="Nhập họ và tên học sinh..."
                     className="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-hidden focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition"
                   />
                 </div>

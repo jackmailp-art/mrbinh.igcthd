@@ -131,7 +131,7 @@ const SEED_ACCOUNTS: AccountRecord[] = [
   },
   {
     id: 'usr-student-an-01',
-    name: 'Nguyễn Văn An',
+    name: '',
     email: 'student@example.com',
     phone: '0987654321',
     passwordHash: hashPassword('password123'),
@@ -141,7 +141,7 @@ const SEED_ACCOUNTS: AccountRecord[] = [
     pin: '4324',
     studentId: 'HS12-001',
     schoolName: 'Lớp 12G09 - Khối 12 THPT',
-    avatar: 'NA',
+    avatar: 'HS',
     createdAt: '2026-09-10T08:00:00.000Z'
   }
 ];
@@ -154,7 +154,13 @@ export const authService = {
       if (raw) {
         const parsed = JSON.parse(raw) as AccountRecord[];
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          // Clear any default hardcoded student name 'Nguyễn Văn An'
+          return parsed.map(acc => {
+            if (acc.role === 'student' && acc.name === 'Nguyễn Văn An') {
+              return { ...acc, name: '' };
+            }
+            return acc;
+          });
         }
       }
     } catch (e) {
@@ -184,6 +190,9 @@ export const authService = {
           if (user.role === 'student') {
             user.className = sanitizeClassName(user.className);
             if (!user.classId) user.classId = 'c-1790068920256';
+            if (user.name === 'Nguyễn Văn An') {
+              user.name = '';
+            }
             delete user.pin;
           }
           return user;
@@ -617,14 +626,12 @@ export const authService = {
     }
 
     // 6. Extract exact student identity
-    const studentName = matchedStudent?.name || matchedAccount?.name || 'Học sinh';
+    const rawStudentName = matchedStudent?.name || matchedAccount?.name || '';
+    const studentName = (rawStudentName && rawStudentName !== 'Nguyễn Văn An') ? rawStudentName : '';
     const studentId = matchedStudent?.studentId || matchedAccount?.studentId || `HS-${cleanPhone.slice(-4)}`;
     const initials = studentName
-      .split(' ')
-      .filter(Boolean)
-      .slice(-2)
-      .map(w => w[0].toUpperCase())
-      .join('') || 'HS';
+      ? (studentName.split(' ').filter(Boolean).slice(-2).map(w => w[0].toUpperCase()).join('') || 'HS')
+      : 'HS';
 
     const authUser: AuthUser = {
       id: matchedStudent?.id || matchedAccount?.id || `usr-std-${cleanPhone}`,

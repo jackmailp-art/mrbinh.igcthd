@@ -38,7 +38,13 @@ import {
   Bookmark,
   CheckCircle,
   BookOpen,
-  RotateCw
+  RotateCw,
+  AlertOctagon,
+  Timer,
+  BellRing,
+  FileSpreadsheet,
+  Hourglass,
+  Radio
 } from 'lucide-react';
 import {
   PieChart as RechartsPieChart,
@@ -52,7 +58,8 @@ import {
   CartesianGrid,
   ResponsiveContainer
 } from 'recharts';
-import { HomeworkTask, StudentItem, ClassItem, TaskCategory, TaskPriority } from '../types';
+import { HomeworkTask, StudentItem, ClassItem, TaskCategory, TaskPriority, ExamItem } from '../types';
+import { INITIAL_EXAMS } from '../data/mockData';
 import { TaskCalendarView } from './TaskCalendarView';
 
 interface TaskPieChartProps {
@@ -196,11 +203,14 @@ const TaskCompletionPieChart: React.FC<TaskPieChartProps> = ({
 
 interface TasksManagementViewProps {
   tasks: HomeworkTask[];
+  exams?: ExamItem[];
   students: StudentItem[];
   classes: ClassItem[];
   onAddTask: (newTask: HomeworkTask) => void;
   onUpdateTasks: (updatedTasks: HomeworkTask[]) => void;
   onDeleteTask: (taskId: string) => void;
+  onUpdateExam?: (exam: ExamItem) => void;
+  onViewExamResults?: (exam: ExamItem) => void;
   onShowToast: (message: string, type?: 'success' | 'info' | 'error') => void;
 }
 
@@ -253,13 +263,30 @@ function playNotificationChime() {
 
 export const TasksManagementView: React.FC<TasksManagementViewProps> = ({
   tasks,
+  exams,
   students,
   classes,
   onAddTask,
   onUpdateTasks,
   onDeleteTask,
+  onUpdateExam,
+  onViewExamResults,
   onShowToast,
 }) => {
+  // Main View Tab: 'tasks' (Nhiệm vụ & Vở bài tập) | 'exams' (Đề thi & Hạn chót)
+  const [mainViewTab, setMainViewTab] = useState<'tasks' | 'exams'>('tasks');
+  const [showOnlyUrgentExams, setShowOnlyUrgentExams] = useState<boolean>(false);
+
+  // Reminded exams tracking map: { [examId]: { time: string, message: string } }
+  const [remindedExamsMap, setRemindedExamsMap] = useState<Record<string, { time: string; message: string }>>(() => {
+    try {
+      const stored = localStorage.getItem('EDUADMIN_REMINDED_EXAMS');
+      return stored ? JSON.parse(stored) : {};
+    } catch {
+      return {};
+    }
+  });
+
   // Filters & State
   const [viewLayout, setViewLayout] = useState<'cards' | 'calendar'>('cards');
   const [selectedClassFilter, setSelectedClassFilter] = useState<string>('all');
@@ -592,6 +619,320 @@ export const TasksManagementView: React.FC<TasksManagementViewProps> = ({
     return list;
   }, [tasks, students, remindedMap]);
 
+  // ================= EXAM DEADLINE REMINDERS LOGIC (< 24 HOURS) =================
+  // 1. Resolve full exams list (with fallback to INITIAL_EXAMS if empty or undefined)
+  const allExamsList = useMemo(() => {
+    const list = exams && exams.length > 0 ? exams : INITIAL_EXAMS;
+    return list.map(e => {
+      // Ensure seeded exams have realistic deadlines if missing
+      if (e.id === 'ex-1' && !e.deadline) {
+        return {
+          ...e,
+          assignedClasses: e.assignedClasses || ['Lớp 12G09', 'Lớp 11A1'],
+          deadline: 'Hôm nay 23:59 (Còn 4 giờ)',
+          deadlineTime: '23:59'
+        };
+      }
+      if (e.id === 'ex-2' && !e.deadline) {
+        return {
+          ...e,
+          assignedClasses: e.assignedClasses || ['Lớp 12G09'],
+          deadline: 'Ngày mai 17:00 (Còn 21 giờ)',
+          deadlineTime: '17:00'
+        };
+      }
+      return e;
+    });
+  }, [exams]);
+
+  // 2. Compute urgency & reminders metadata for all exams
+  const examRemindersList = useMemo(() => {
+    return allExamsList.map(exam => {
+      let hoursRemaining = 999;
+      let isWithin24h = false;
+      let isExpired = false;
+      let badgeText = '';
+
+      if (exam.status === 'Đã đóng') {
+        isExpired = true;
+        badgeText = 'Đã khóa cổng';
+      } else if (exam.deadline) {
+        const lower = exam.deadline.toLowerCase();
+        const hoursMatch = lower.match(/còn\s*(\d+)\s*(giờ|h)/);
+        if (hoursMatch) {
+          hoursRemaining = parseInt(hoursMatch[1], 10);
+          isWithin24h = hoursRemaining <= 24;
+          badgeText = `Còn ${hoursRemaining} giờ`;
+        } else if (lower.includes('hôm nay')) {
+          hoursRemaining = 4;
+          isWithin24h = true;
+          badgeText = 'Hôm nay (Còn < 6h)';
+        } else if (lower.includes('ngày mai')) {
+          hoursRemaining = 20;
+          isWithin24h = true;
+          badgeText = 'Ngày mai (Còn ~20h)';
+        } else {
+          // Standard date parse
+          const parsedDate = new Date(exam.deadline);
+          if (!isNaN(parsedDate.getTime())) {
+            const diffMs = parsedDate.getTime() - Date.now();
+            const diffHours = diffMs / (1000 * 60 * 60);
+            if (diffHours <= 0 && diffHours > -24) {
+              hoursRemaining = 0;
+              isWithin24h = true;
+              badgeText = 'Sắp đóng cổng';
+            } else if (diffHours > 0 && diffHours <= 24) {
+              hoursRemaining = Math.max(1, Math.round(diffHours));
+              isWithin24h = true;
+              badgeText = `Còn ${hoursRemaining} giờ`;
+            } else if (diffHours < 0) {
+              isExpired = true;
+              badgeText = 'Đã quá hạn';
+            }
+          }
+        }
+      }
+
+      // Check assigned classes & calculate student counts
+      const assignedNames = exam.assignedClasses || [];
+      const matchedClasses = classes.filter(c =>
+        assignedNames.includes(c.name) || (exam.assignedClassIds && exam.assignedClassIds.includes(c.id))
+      );
+
+      let totalStudents = 0;
+      matchedClasses.forEach(c => {
+        const inClass = students.filter(s => s.classId === c.id || s.className === c.name).length;
+        totalStudents += inClass > 0 ? inClass : (c.studentsCount || 35);
+      });
+      if (totalStudents === 0) totalStudents = 38;
+
+      const submittedCount = exam.submissions || 0;
+      const pendingCount = Math.max(0, totalStudents - submittedCount);
+      const completionRate = totalStudents > 0 ? Math.round((submittedCount / totalStudents) * 100) : 0;
+      const assignedText = assignedNames.length > 0 ? assignedNames.join(', ') : 'Lớp 12G09, Lớp 11A1';
+
+      const isReminded = !!remindedExamsMap[exam.id];
+      const remindedInfo = remindedExamsMap[exam.id];
+
+      return {
+        exam,
+        hoursRemaining,
+        isWithin24h,
+        isExpired,
+        deadlineDisplay: exam.deadline || 'Không giới hạn',
+        badgeText: badgeText || 'Đang mở',
+        assignedText,
+        assignedClassesList: matchedClasses,
+        totalStudents,
+        submittedCount,
+        pendingCount,
+        completionRate,
+        isReminded,
+        remindedInfo
+      };
+    });
+  }, [allExamsList, classes, students, remindedExamsMap]);
+
+  // Filter urgent exams (< 24 hours)
+  const urgentExamsList = useMemo(() => {
+    return examRemindersList.filter(item => item.isWithin24h && !item.isExpired);
+  }, [examRemindersList]);
+
+  const totalPendingStudentsAcrossUrgentExams = useMemo(() => {
+    return urgentExamsList.reduce((acc, curr) => acc + curr.pendingCount, 0);
+  }, [urgentExamsList]);
+
+  // 3. Detailed list of students who haven't submitted urgent exams (< 24 hours)
+  const urgentExamPendingStudentsList = useMemo(() => {
+    const list: Array<{
+      key: string;
+      student: StudentItem;
+      examItem: (typeof examRemindersList)[0];
+      isReminded: boolean;
+      remindedTime?: string;
+    }> = [];
+
+    urgentExamsList.forEach((item) => {
+      const matchedClassIds = new Set(item.assignedClassesList.map((c) => c.id));
+      const matchedClassNames = new Set(item.assignedClassesList.map((c) => c.name));
+
+      // Find real students belonging to these classes
+      const matchedStudents = students.filter(
+        (s) => (s.classId && matchedClassIds.has(s.classId)) || matchedClassNames.has(s.className)
+      );
+
+      // Synthesize realistic roster if class has no students in local state yet
+      const candidateList: StudentItem[] =
+        matchedStudents.length > 0
+          ? matchedStudents
+          : (item.assignedClassesList[0]
+              ? Array.from({ length: Math.min(item.pendingCount, 8) }, (_, idx) => ({
+                  id: `gen-st-${item.exam.id}-${idx + 1}`,
+                  studentId: `HS${item.assignedClassesList[0].name.replace(/\D/g, '') || '12'}${String(idx + 1).padStart(3, '0')}`,
+                  name: [
+                    'Trần Đình Long',
+                    'Nguyễn Thu Trang',
+                    'Phạm Minh Đức',
+                    'Lê Khánh Huyền',
+                    'Hoàng Quốc Bảo',
+                    'Đỗ Thảo Vy',
+                    'Vũ Nam Phong',
+                    'Bùi Gia Khiêm'
+                  ][idx % 8],
+                  className: item.assignedClassesList[0].name,
+                  classId: item.assignedClassesList[0].id,
+                  lastScore: 7.0 + (idx % 3) * 0.5,
+                  progress: 40 + idx * 5,
+                  status: 'Chưa làm' as const,
+                  avatar: `https://images.unsplash.com/photo-${1534528741775 + idx}?w=100&auto=format&fit=crop&q=80`,
+                  phone: `098${String(1234567 + idx).padStart(7, '0')}`,
+                  parentPhone: `091${String(8765432 - idx).padStart(7, '0')}`,
+                  completedExams: 1
+                }))
+              : []);
+
+      // Filter unsubmitted students up to pending count
+      const unsubmitted = candidateList.filter((s) => s.status !== 'Hoàn thành').slice(0, Math.max(1, item.pendingCount));
+
+      unsubmitted.forEach((student) => {
+        const remindKey = `exam_remind_${item.exam.id}_${student.id || student.studentId}`;
+        const studentReminded = !!remindedMap[remindKey] || item.isReminded;
+        list.push({
+          key: `${item.exam.id}-${student.id || student.studentId}`,
+          student,
+          examItem: item,
+          isReminded: studentReminded,
+          remindedTime: remindedMap[remindKey]?.time || item.remindedInfo?.time
+        });
+      });
+    });
+
+    return list;
+  }, [urgentExamsList, students, remindedMap]);
+
+  // Handler to remind an individual student for an urgent exam
+  const handleRemindStudentForExam = (student: StudentItem, examItem: (typeof examRemindersList)[0]) => {
+    playNotificationChime();
+    const nowStr = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+    const pushMsg = `🔔 [CẢNH BÁO HẠN CHÓT] Chào em ${student.name} (${student.className}), đề thi "${examItem.exam.title}" chỉ còn ${examItem.badgeText} nữa là chính thức KHÓA CỔNG nộp bài. Em hãy nhanh chóng vào hoàn thành bài làm ngay để không bị trễ hạn nhé!`;
+
+    setActivePushNotification({
+      id: `push-st-exam-${student.id || student.studentId}-${Date.now()}`,
+      studentName: student.name,
+      className: student.className,
+      parentPhone: student.parentPhone || student.phone || '0987654321',
+      taskTitle: `[ĐỀ THI SẮP KHÓA CỔNG] ${examItem.exam.title}`,
+      deadline: examItem.deadlineDisplay,
+      message: pushMsg,
+      timestamp: nowStr,
+      templateType: 'urgent',
+    });
+
+    const remindKey = `exam_remind_${examItem.exam.id}_${student.id || student.studentId}`;
+    setRemindedMap((prev) => {
+      const updated = {
+        ...prev,
+        [remindKey]: { time: nowStr, template: 'urgent' }
+      };
+      try {
+        localStorage.setItem('EDUADMIN_REMINDED_STUDENTS', JSON.stringify(updated));
+      } catch {}
+      return updated;
+    });
+
+    onShowToast(`🚨 Đã bắn chuông cảnh báo và gửi thông báo nhắc thi riêng tới em ${student.name}!`, 'success');
+  };
+
+  // Handlers for Exam Reminders
+  const handleRemindExam = (item: (typeof examRemindersList)[0]) => {
+    playNotificationChime();
+    const nowStr = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+    const pushMsg = `🔔 [CẢNH BÁO KHẨN CẤP TỪ GIÁO VIÊN] Đề thi "${item.exam.title}" (${item.exam.grade}) chỉ còn ${item.badgeText} nữa là chính thức KHÓA CỔNG nộp bài! Hiện hệ thống ghi nhận còn ${item.pendingCount} học sinh lớp ${item.assignedText} chưa hoàn thành. Các em hãy khẩn trương vào làm bài ngay để tránh bị điểm 0 chuyên cần.`;
+
+    setActivePushNotification({
+      id: `push-exam-${item.exam.id}-${Date.now()}`,
+      studentName: `Học sinh lớp ${item.assignedText}`,
+      className: item.assignedText,
+      parentPhone: '0981234567',
+      taskTitle: `[ĐỀ THI SẮP KHÓA CỔNG] ${item.exam.title}`,
+      deadline: item.deadlineDisplay,
+      message: pushMsg,
+      timestamp: nowStr,
+      templateType: 'urgent',
+    });
+
+    setRemindedExamsMap(prev => {
+      const updated = {
+        ...prev,
+        [item.exam.id]: { time: nowStr, message: pushMsg }
+      };
+      try {
+        localStorage.setItem('EDUADMIN_REMINDED_EXAMS', JSON.stringify(updated));
+      } catch {}
+      return updated;
+    });
+
+    onShowToast(
+      `🚨 [Reminders System] Đã bắn chuông cảnh báo và gửi thông báo nhắc thi khẩn cấp tới ${item.totalStudents} học sinh lớp ${item.assignedText}!`,
+      'success'
+    );
+  };
+
+  const handleBulkRemindAllUrgentExams = () => {
+    if (urgentExamsList.length === 0) return;
+    playNotificationChime();
+    const nowStr = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+
+    const newMap: Record<string, { time: string; message: string }> = {};
+    let totalNotified = 0;
+    urgentExamsList.forEach(item => {
+      totalNotified += item.totalStudents;
+      newMap[item.exam.id] = {
+        time: nowStr,
+        message: `Đã gửi cảnh báo hạn chót (<24h)`
+      };
+    });
+
+    setRemindedExamsMap(prev => {
+      const updated = { ...prev, ...newMap };
+      try {
+        localStorage.setItem('EDUADMIN_REMINDED_EXAMS', JSON.stringify(updated));
+      } catch {}
+      return updated;
+    });
+
+    setActivePushNotification({
+      id: `push-bulk-exams-${Date.now()}`,
+      studentName: `Toàn bộ học sinh ${urgentExamsList.length} đề thi sắp khóa cổng`,
+      className: urgentExamsList.map(u => u.assignedText).join(', '),
+      parentPhone: '098*******',
+      taskTitle: `Cảnh báo hạn chót ${urgentExamsList.length} đề thi (< 24h)`,
+      deadline: 'Trong 24 giờ tới',
+      message: `🔔 [CẢNH BÁO TỔNG ĐỢT THI] Đã gửi thông báo khẩn cấp tới ${totalNotified} lượt học sinh cho ${urgentExamsList.length} đề thi sắp khóa cổng trong vòng 24 giờ tới!`,
+      timestamp: nowStr,
+      templateType: 'urgent',
+    });
+
+    onShowToast(
+      `⚡ [Reminders System] Đã gửi đồng loạt thông báo cảnh báo hạn chót tới toàn bộ ${urgentExamsList.length} đề thi (< 24h)!`,
+      'success'
+    );
+  };
+
+  const handleExtendExamDeadline = (exam: ExamItem) => {
+    const newDeadline = '23:59 Ngày mai (+24h)';
+    const updatedExam: ExamItem = {
+      ...exam,
+      deadline: newDeadline,
+      deadlineTime: '23:59'
+    };
+
+    if (onUpdateExam) {
+      onUpdateExam(updatedExam);
+    }
+    onShowToast(`⏱️ Đã gia hạn thành công thêm +24 giờ cho đề thi "${exam.title}"! Hạn mới: ${newDeadline}`, 'success');
+  };
+
   // Filtered tasks
   const filteredTasks = useMemo(() => {
     return tasks.filter((t) => {
@@ -622,6 +963,29 @@ export const TasksManagementView: React.FC<TasksManagementViewProps> = ({
       return true;
     });
   }, [tasks, selectedClassFilter, selectedTypeFilter, selectedCategoryFilter, selectedPriorityFilter, showOnlyUrgent, searchQuery]);
+
+  // Filtered exams for the 'exams' tab
+  const filteredExams = useMemo(() => {
+    return examRemindersList.filter((item) => {
+      if (selectedClassFilter !== 'all') {
+        const hasClass =
+          item.exam.assignedClasses?.includes(selectedClassFilter) ||
+          item.assignedClassesList.some((c) => c.name === selectedClassFilter);
+        if (!hasClass) return false;
+      }
+      if (showOnlyUrgentExams && !item.isWithin24h) {
+        return false;
+      }
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        const matchTitle = item.exam.title.toLowerCase().includes(q);
+        const matchTopic = (item.exam.topic || '').toLowerCase().includes(q);
+        const matchClass = item.assignedText.toLowerCase().includes(q);
+        if (!matchTitle && !matchTopic && !matchClass) return false;
+      }
+      return true;
+    });
+  }, [examRemindersList, selectedClassFilter, showOnlyUrgentExams, searchQuery]);
 
   // Statistics Panel Data: Completed vs Pending across all classes
   const overallTaskStats = useMemo(() => {
@@ -958,6 +1322,96 @@ export const TasksManagementView: React.FC<TasksManagementViewProps> = ({
           </button>
         </div>
       </div>
+
+      {/* 2.1 MAIN VIEW TABS: TASKS vs EXAM DEADLINE REMINDERS */}
+      <div className="flex items-center gap-3 border-b border-slate-200 pb-3">
+        <button
+          type="button"
+          onClick={() => setMainViewTab('tasks')}
+          className={`flex items-center gap-2 px-5 py-3 rounded-2xl font-black text-sm transition-all cursor-pointer ${
+            mainViewTab === 'tasks'
+              ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25 ring-2 ring-blue-400/40'
+              : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'
+          }`}
+        >
+          <ClipboardList className="w-4 h-4" />
+          <span>Nhiệm Vụ Vở & Bài Tập ({tasks.length})</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setMainViewTab('exams')}
+          className={`flex items-center gap-2.5 px-5 py-3 rounded-2xl font-black text-sm transition-all cursor-pointer relative ${
+            mainViewTab === 'exams'
+              ? 'bg-gradient-to-r from-rose-600 via-red-600 to-amber-600 text-white shadow-md shadow-rose-500/25 ring-2 ring-rose-400'
+              : 'bg-white hover:bg-rose-50 text-slate-800 border border-rose-200'
+          }`}
+        >
+          <BellRing className={`w-4 h-4 ${urgentExamsList.length > 0 ? 'text-amber-300 animate-bounce' : 'text-rose-500'}`} />
+          <span>Hệ Thống Nhắc Nhở Hạn Chót Đề Thi ({examRemindersList.length})</span>
+          {urgentExamsList.length > 0 && (
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-black bg-rose-500 text-white border border-rose-300 animate-pulse">
+              <span className="w-2 h-2 rounded-full bg-white animate-ping" />
+              <span>{urgentExamsList.length} đề &lt; 24h</span>
+            </span>
+          )}
+        </button>
+      </div>
+
+      {mainViewTab === 'tasks' ? (
+        <>
+          {/* URGENT EXAM ALERT BANNER IN TASKS VIEW (IF ANY EXAM DEADLINE IS < 24H) */}
+          {urgentExamsList.length > 0 && (
+            <div className="bg-gradient-to-r from-red-600/10 via-rose-500/15 to-amber-500/15 border-2 border-rose-500 ring-4 ring-rose-500/10 rounded-2xl p-4 sm:p-5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 animate-in fade-in duration-200">
+              <div className="flex items-start sm:items-center gap-3.5">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-rose-600 to-red-600 text-white flex items-center justify-center shadow-md shrink-0 animate-pulse">
+                  <BellRing className="w-6 h-6 animate-bounce" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase bg-rose-600 text-white shadow-2xs">
+                      <Flame className="w-3 h-3 text-amber-300" />
+                      <span>CẢNH BÁO HẠN CHÓT ĐỀ THI DƯỚI 24 GIỜ</span>
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-[11px] font-black text-rose-800 bg-rose-100 px-2.5 py-0.5 rounded-full border border-rose-300 animate-pulse">
+                      <span className="w-2 h-2 rounded-full bg-rose-600 animate-ping" />
+                      <span>{urgentExamsList.length} đề thi sắp khóa cổng</span>
+                    </span>
+                    <span className="text-[11px] font-bold text-amber-900 bg-amber-100 px-2 py-0.5 rounded-md border border-amber-200">
+                      {totalPendingStudentsAcrossUrgentExams} học sinh chưa nộp bài
+                    </span>
+                  </div>
+                  <h3 className="text-sm sm:text-base font-extrabold text-slate-900 mt-1">
+                    Phát hiện các đề thi đã giao sắp hết hạn nộp bài trong 24 giờ tới!
+                  </h3>
+                  <p className="text-xs text-slate-600 mt-0.5">
+                    {urgentExamsList.map(u => `"${u.exam.title}" (${u.badgeText} - ${u.pendingCount} HS chưa nộp)`).join(' • ')}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0 flex-wrap">
+                <button
+                  type="button"
+                  onClick={handleBulkRemindAllUrgentExams}
+                  className="px-4 py-2.5 bg-gradient-to-r from-rose-600 via-red-600 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-white font-extrabold text-xs rounded-xl shadow-md transition cursor-pointer flex items-center gap-2 active:scale-95"
+                  title="Bắn chuông âm thanh và gửi thông báo nhắc thi khẩn cấp tới toàn bộ học sinh"
+                >
+                  <Radio className="w-4 h-4 text-amber-200 animate-pulse" />
+                  <span>⚡ Bắn chuông tất cả ({urgentExamsList.length} đề)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMainViewTab('exams')}
+                  className="px-3.5 py-2.5 bg-white hover:bg-rose-50 text-rose-700 font-extrabold text-xs rounded-xl border border-rose-300 transition cursor-pointer flex items-center gap-1.5 active:scale-95 shadow-2xs"
+                  title="Chuyển sang Quản lý Chi tiết Hệ thống Nhắc nhở Đề thi"
+                >
+                  <span>Mở Hệ thống Nhắc nhở</span>
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          )}
 
       {/* 3. URGENT PENDING STUDENTS ALERT BANNER & PUSH NOTIFICATION SIMULATION PANEL */}
       <div className="bg-gradient-to-r from-rose-500/10 via-amber-500/10 to-orange-500/10 border-2 border-rose-300 rounded-2xl p-5 shadow-xs space-y-4">
@@ -1708,6 +2162,474 @@ export const TasksManagementView: React.FC<TasksManagementViewProps> = ({
           >
             Đặt lại bộ lọc
           </button>
+        </div>
+      )}
+        </>
+      ) : (
+        /* ================= DEDICATED EXAM DEADLINE REMINDERS VIEW (< 24 HOURS) ================= */
+        <div className="space-y-6 animate-in fade-in duration-200">
+          {/* 1. TOP KPI SUMMARY STATS CARDS */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Card 1: Urgent Exams < 24h */}
+            <div className={`p-5 rounded-2xl border-2 transition shadow-md flex items-center justify-between ${
+              urgentExamsList.length > 0
+                ? 'bg-gradient-to-br from-rose-500/15 via-red-500/10 to-amber-500/10 border-rose-500 ring-2 ring-rose-300/40'
+                : 'bg-white border-slate-200'
+            }`}>
+              <div className="space-y-1">
+                <span className="text-[11px] font-black uppercase tracking-wider text-rose-700 flex items-center gap-1.5">
+                  <Flame className="w-3.5 h-3.5 text-amber-500 animate-bounce" />
+                  Sát hạn chót (&lt; 24h)
+                </span>
+                <div className="text-3xl font-black text-rose-950 flex items-baseline gap-2">
+                  <span>{urgentExamsList.length}</span>
+                  <span className="text-xs font-bold text-slate-500">đề thi</span>
+                </div>
+                <p className="text-[11px] text-rose-800 font-medium">
+                  {urgentExamsList.length > 0 ? 'Cần phát chuông đôn đốc gấp' : 'Không có đề thi nào sát hạn'}
+                </p>
+              </div>
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-rose-600 to-red-600 text-white flex items-center justify-center shadow-md shrink-0 animate-pulse">
+                <BellRing className="w-6 h-6 animate-bounce" />
+              </div>
+            </div>
+
+            {/* Card 2: Pending Students across urgent exams */}
+            <div className="p-5 rounded-2xl border-2 border-amber-300 bg-amber-50/50 shadow-md flex items-center justify-between">
+              <div className="space-y-1">
+                <span className="text-[11px] font-black uppercase tracking-wider text-amber-800 flex items-center gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />
+                  HS chưa nộp đề &lt; 24h
+                </span>
+                <div className="text-3xl font-black text-amber-950 flex items-baseline gap-2">
+                  <span>{totalPendingStudentsAcrossUrgentExams}</span>
+                  <span className="text-xs font-bold text-slate-500">học sinh</span>
+                </div>
+                <p className="text-[11px] text-amber-800 font-medium">
+                  Tại các lớp được giao đề thi sát hạn
+                </p>
+              </div>
+              <div className="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center shadow-md shrink-0">
+                <Users className="w-6 h-6" />
+              </div>
+            </div>
+
+            {/* Card 3: Reminded exams today */}
+            <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-md flex items-center justify-between">
+              <div className="space-y-1">
+                <span className="text-[11px] font-black uppercase tracking-wider text-emerald-700 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  Đã phát chuông hôm nay
+                </span>
+                <div className="text-3xl font-black text-slate-900 flex items-baseline gap-2">
+                  <span>{Object.keys(remindedExamsMap).length}</span>
+                  <span className="text-xs font-bold text-slate-500">lượt đề</span>
+                </div>
+                <p className="text-[11px] text-emerald-700 font-medium">
+                  Đã phát âm thanh & push notification
+                </p>
+              </div>
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-md shrink-0">
+                <Volume2 className="w-6 h-6" />
+              </div>
+            </div>
+
+            {/* Card 4: Total exams monitored */}
+            <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-md flex items-center justify-between">
+              <div className="space-y-1">
+                <span className="text-[11px] font-black uppercase tracking-wider text-blue-700 flex items-center gap-1.5">
+                  <BookOpen className="w-3.5 h-3.5 text-blue-600" />
+                  Tổng số đề theo dõi
+                </span>
+                <div className="text-3xl font-black text-slate-900 flex items-baseline gap-2">
+                  <span>{examRemindersList.length}</span>
+                  <span className="text-xs font-bold text-slate-500">đề</span>
+                </div>
+                <p className="text-[11px] text-slate-500 font-medium">
+                  {allExamsList.filter(e => e.status === 'Đang mở').length} đề đang mở làm bài
+                </p>
+              </div>
+              <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-md shrink-0">
+                <ClipboardList className="w-6 h-6" />
+              </div>
+            </div>
+          </div>
+
+          {/* 2. EXAM REMINDERS CONTROLS & FILTER TOOLBAR */}
+          <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-2 flex-1 min-w-[240px]">
+              <div className="relative flex-1">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Tìm kiếm đề thi, chủ đề, lớp được giao..."
+                  className="w-full pl-9 pr-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50 focus:bg-white transition"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 flex-wrap">
+              {/* Class Filter */}
+              <select
+                value={selectedClassFilter}
+                onChange={(e) => setSelectedClassFilter(e.target.value)}
+                className="text-xs font-bold border border-slate-200 rounded-xl px-3 py-2 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">Tất cả các lớp ({classes.length})</option>
+                {classes.map((c) => (
+                  <option key={c.id} value={c.name}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+
+              {/* Only Urgent (< 24h) Filter Toggle */}
+              <button
+                type="button"
+                onClick={() => setShowOnlyUrgentExams(!showOnlyUrgentExams)}
+                className={`px-3 py-2 text-xs font-bold rounded-xl border transition cursor-pointer flex items-center gap-1.5 ${
+                  showOnlyUrgentExams
+                    ? 'bg-rose-600 text-white border-rose-600 shadow-xs'
+                    : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200'
+                }`}
+              >
+                <Flame className={`w-3.5 h-3.5 ${showOnlyUrgentExams ? 'text-amber-200' : 'text-rose-500'}`} />
+                <span>Chỉ xem Sát hạn chót (&lt; 24h) ({urgentExamsList.length})</span>
+              </button>
+
+              {/* Sound Test Button */}
+              <button
+                type="button"
+                onClick={() => {
+                  playNotificationChime();
+                  onShowToast('🔔 Đã phát thử âm thanh chuông cảnh báo Web Audio!', 'info');
+                }}
+                className="px-3 py-2 text-xs font-bold rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 transition cursor-pointer flex items-center gap-1.5"
+                title="Nghe thử âm thanh chuông cảnh báo"
+              >
+                <Volume2 className="w-3.5 h-3.5 text-blue-600" />
+                <span>Thử chuông</span>
+              </button>
+
+              {/* Bulk remind all urgent */}
+              {urgentExamsList.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleBulkRemindAllUrgentExams}
+                  className="px-4 py-2 bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-white font-extrabold text-xs rounded-xl shadow-md transition cursor-pointer flex items-center gap-1.5 active:scale-95"
+                >
+                  <Radio className="w-3.5 h-3.5 text-amber-200 animate-pulse" />
+                  <span>⚡ Bắn chuông tất cả ({urgentExamsList.length} đề &lt; 24h)</span>
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* 3. EXAMS CARDS GRID WITH VISUAL ALERT & HIGHLIGHT */}
+          {filteredExams.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {filteredExams.map((item) => {
+                const isUrgent = item.isWithin24h && !item.isExpired;
+
+                return (
+                  <div
+                    key={item.exam.id}
+                    className={`rounded-2xl p-5 flex flex-col justify-between space-y-4 relative overflow-hidden transition-all duration-200 hover:shadow-xl ${
+                      isUrgent
+                        ? 'bg-gradient-to-br from-rose-50/70 via-white to-amber-50/40 border-2 border-rose-500 ring-4 ring-rose-500/20 shadow-lg'
+                        : item.isExpired
+                        ? 'bg-slate-50/80 border border-slate-200 opacity-80'
+                        : 'bg-white border border-slate-200 shadow-xs hover:border-slate-300'
+                    }`}
+                  >
+                    {/* Visual Corner Ribbon for Urgent Exams */}
+                    {isUrgent && (
+                      <div className="absolute top-0 right-0">
+                        <div className="bg-gradient-to-l from-rose-600 to-amber-500 text-white font-black text-[9px] uppercase tracking-wider px-3.5 py-1 rounded-bl-xl shadow-xs flex items-center gap-1">
+                          <Flame className="w-3 h-3 text-amber-200 animate-bounce" />
+                          <span>SẮP KHÓA CỔNG (&lt; 24H)</span>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="space-y-3">
+                      {/* Top Badges */}
+                      <div className="flex items-center gap-1.5 flex-wrap pr-16">
+                        <span className="text-[10px] font-black uppercase tracking-wider bg-blue-100 text-blue-800 px-2 py-0.5 rounded border border-blue-200">
+                          Khối {item.exam.grade}
+                        </span>
+                        <span className="text-[10px] font-bold bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">
+                          {item.exam.questionsCount || 40} câu • {item.exam.duration || '50 phút'}
+                        </span>
+                        {isUrgent ? (
+                          <span className="inline-flex items-center gap-1 text-[11px] font-black text-rose-700 bg-rose-100/80 px-2.5 py-0.5 rounded-full border border-rose-300 animate-pulse">
+                            <Clock className="w-3 h-3 text-rose-600 animate-spin" style={{ animationDuration: '6s' }} />
+                            <span>{item.badgeText}</span>
+                          </span>
+                        ) : (
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                            item.isExpired ? 'bg-slate-200 text-slate-600' : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                          }`}>
+                            {item.badgeText}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Title */}
+                      <h4 className="font-black text-sm text-slate-900 leading-snug line-clamp-2" title={item.exam.title}>
+                        {item.exam.title}
+                      </h4>
+
+                      {/* Assigned Classes */}
+                      <div className="flex items-center gap-1.5 text-xs text-blue-800 font-semibold bg-blue-50/80 p-2.5 rounded-xl border border-blue-100">
+                        <Users className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                        <span className="truncate">Đã giao: <strong>{item.assignedText}</strong></span>
+                      </div>
+
+                      {/* Deadline info */}
+                      <div className="flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                        <span className="text-slate-500 font-medium">Hạn nộp:</span>
+                        <span className={`font-black ${isUrgent ? 'text-rose-600' : 'text-slate-800'}`}>
+                          {item.deadlineDisplay}
+                        </span>
+                      </div>
+
+                      {/* Progress Bar & Submission Ratio */}
+                      <div className="space-y-1.5 pt-1">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-slate-500 font-medium">Tiến độ nộp bài:</span>
+                          <span className="font-black text-slate-800">
+                            {item.submittedCount} / {item.totalStudents} em ({item.completionRate}%)
+                          </span>
+                        </div>
+                        <div className="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden flex">
+                          <div
+                            className="bg-emerald-500 h-full transition-all duration-300"
+                            style={{ width: `${item.completionRate}%` }}
+                          />
+                          <div
+                            className="bg-rose-500 h-full transition-all duration-300"
+                            style={{ width: `${100 - item.completionRate}%` }}
+                          />
+                        </div>
+                        <div className="flex items-center justify-between text-[11px] pt-0.5">
+                          <span className="text-emerald-700 font-bold">✓ Đã nộp: {item.submittedCount} em</span>
+                          <span className={`${item.pendingCount > 0 ? 'text-rose-600 font-extrabold' : 'text-slate-500 font-medium'}`}>
+                            {item.pendingCount > 0 ? `⚠️ Chưa nộp: ${item.pendingCount} em` : 'Đã nộp đủ'}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Reminder status */}
+                      <div className="pt-0.5">
+                        {item.isReminded ? (
+                          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                            <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                            <span>Đã phát chuông nhắc ({item.remindedInfo?.time || 'Vừa xong'})</span>
+                          </span>
+                        ) : isUrgent ? (
+                          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                            <AlertTriangle className="w-3 h-3 text-amber-600" />
+                            <span>Chưa phát chuông nhắc hôm nay</span>
+                          </span>
+                        ) : null}
+                      </div>
+                    </div>
+
+                    {/* Action Toolbar */}
+                    <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+                      <button
+                        type="button"
+                        onClick={() => handleRemindExam(item)}
+                        className={`flex items-center gap-1.5 px-3 py-2 font-black rounded-xl shadow-xs transition cursor-pointer active:scale-95 ${
+                          isUrgent
+                            ? 'bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-700 hover:to-amber-700 text-white'
+                            : 'bg-blue-600 hover:bg-blue-700 text-white'
+                        }`}
+                        title="Phát chuông âm thanh và gửi thông báo nhắc nhở tới học sinh chưa nộp bài"
+                      >
+                        <Bell className="w-3.5 h-3.5 text-amber-200" />
+                        <span>{item.isReminded ? 'Gửi lại chuông' : 'Bắn chuông nhắc'}</span>
+                      </button>
+
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        {onViewExamResults && (
+                          <button
+                            type="button"
+                            onClick={() => onViewExamResults(item.exam)}
+                            className="flex items-center gap-1 px-2.5 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold rounded-xl border border-indigo-200 transition cursor-pointer active:scale-95"
+                            title="Xem danh sách bài làm của từng lớp và Xuất file Excel"
+                          >
+                            <FileSpreadsheet className="w-3.5 h-3.5 text-indigo-600" />
+                            <span>DS Lớp & KQ</span>
+                          </button>
+                        )}
+
+                        <button
+                          type="button"
+                          onClick={() => handleExtendExamDeadline(item.exam)}
+                          className="flex items-center gap-1 px-2.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition cursor-pointer active:scale-95"
+                          title="Gia hạn thời gian nộp bài thêm 24 giờ (+24h)"
+                        >
+                          <Timer className="w-3.5 h-3.5 text-slate-500" />
+                          <span>+24h</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="bg-white p-12 text-center rounded-2xl border border-slate-200 space-y-3">
+              <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto" />
+              <h3 className="font-extrabold text-base text-slate-800">Không có đề thi nào khớp bộ lọc</h3>
+              <p className="text-xs text-slate-500 max-w-md mx-auto">
+                Tất cả đề thi đều an toàn hoặc không thỏa mãn điều kiện tìm kiếm. Thử chuyển bộ lọc về "Tất cả đề thi".
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowOnlyUrgentExams(false);
+                  setSelectedClassFilter('all');
+                  setSearchQuery('');
+                }}
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition cursor-pointer"
+              >
+                Xem tất cả đề thi
+              </button>
+            </div>
+          )}
+
+          {/* 4. ROSTER TABLE: STUDENTS PENDING URGENT EXAMS (< 24 HOURS) */}
+          <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-600 to-amber-600 text-white flex items-center justify-center shadow-xs shrink-0 animate-pulse">
+                  <Flame className="w-5 h-5 text-amber-200" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-black text-slate-900 flex items-center gap-2">
+                    <span>DANH SÁCH HỌC SINH CHƯA NỘP ĐỀ THI SÁT HẠN CHÓT (&lt; 24H)</span>
+                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-rose-600 text-white">
+                      {urgentExamPendingStudentsList.length} em
+                    </span>
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Danh sách học sinh tại các lớp có đề thi sắp hết hạn chưa hoàn tất bài thi. Giáo viên có thể bấm chuông riêng từng em hoặc bấm gửi tất cả.
+                  </p>
+                </div>
+              </div>
+
+              {urgentExamPendingStudentsList.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleBulkRemindAllUrgentExams}
+                  className="px-3.5 py-2 bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white text-xs font-extrabold rounded-xl shadow-xs transition cursor-pointer flex items-center gap-1.5 active:scale-95 shrink-0"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>Bắn chuông nhắc toàn bộ ({urgentExamPendingStudentsList.length} em)</span>
+                </button>
+              )}
+            </div>
+
+            {urgentExamPendingStudentsList.length > 0 ? (
+              <div className="overflow-x-auto rounded-xl border border-slate-200">
+                <table className="w-full text-left text-xs border-collapse">
+                  <thead className="bg-slate-50 sticky top-0 z-10 text-[11px] font-black uppercase text-slate-600 border-b border-slate-200">
+                    <tr>
+                      <th className="py-3 px-4">Học sinh & Lớp</th>
+                      <th className="py-3 px-3">Đề thi sắp khóa cổng</th>
+                      <th className="py-3 px-3">Hạn chót còn lại</th>
+                      <th className="py-3 px-3">Số ĐT Phụ huynh</th>
+                      <th className="py-3 px-3">Trạng thái nhắc</th>
+                      <th className="py-3 px-4 text-right">Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-medium">
+                    {urgentExamPendingStudentsList.map(({ key, student, examItem, isReminded, remindedTime }) => (
+                      <tr key={key} className="hover:bg-rose-50/40 transition">
+                        <td className="py-3 px-4">
+                          <div className="flex items-center gap-2.5">
+                            <span className="w-8 h-8 rounded-full bg-gradient-to-tr from-rose-100 to-amber-100 text-rose-800 flex items-center justify-center text-xs font-black shrink-0 border border-rose-200">
+                              {student.name.charAt(0)}
+                            </span>
+                            <div>
+                              <div className="font-extrabold text-slate-900">{student.name}</div>
+                              <div className="text-[10px] text-slate-400">
+                                Mã: {student.studentId} • <span className="font-bold text-blue-600">{student.className}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td className="py-3 px-3 max-w-[240px]">
+                          <div className="font-bold text-slate-800 truncate" title={examItem.exam.title}>
+                            {examItem.exam.title}
+                          </div>
+                          <div className="text-[10px] text-slate-400">Khối {examItem.exam.grade} • {examItem.exam.duration}</div>
+                        </td>
+
+                        <td className="py-3 px-3 whitespace-nowrap">
+                          <span className="inline-flex items-center gap-1 text-[11px] font-black text-rose-700 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200 animate-pulse">
+                            <Clock className="w-3 h-3 text-rose-600" />
+                            <span>{examItem.badgeText}</span>
+                          </span>
+                        </td>
+
+                        <td className="py-3 px-3 whitespace-nowrap text-slate-600">
+                          <div className="flex items-center gap-1 font-mono text-[11px]">
+                            <Phone className="w-3 h-3 text-slate-400" />
+                            <span>{student.parentPhone || student.phone || '0987654321'}</span>
+                          </div>
+                          <span className="text-[10px] text-emerald-600 font-bold">Đã liên kết Zalo</span>
+                        </td>
+
+                        <td className="py-3 px-3 whitespace-nowrap">
+                          {isReminded ? (
+                            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                              <span>Đã phát chuông {remindedTime ? `(${remindedTime})` : 'vừa xong'}</span>
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
+                              <AlertTriangle className="w-3 h-3 text-amber-600" />
+                              <span>Chưa nhắc hôm nay</span>
+                            </span>
+                          )}
+                        </td>
+
+                        <td className="py-3 px-4 text-right whitespace-nowrap">
+                          <button
+                            type="button"
+                            onClick={() => handleRemindStudentForExam(student, examItem)}
+                            className={`px-3 py-1.5 text-xs font-bold rounded-xl transition cursor-pointer flex items-center gap-1.5 ml-auto active:scale-95 shadow-2xs ${
+                              isReminded
+                                ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300'
+                                : 'bg-rose-600 hover:bg-rose-700 text-white shadow-rose-200'
+                            }`}
+                          >
+                            <Send className="w-3.5 h-3.5" />
+                            <span>{isReminded ? 'Gửi lại chuông' : 'Bắn chuông riêng em này'}</span>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="p-6 bg-emerald-50/50 rounded-xl border border-emerald-200 text-center text-xs text-slate-600 flex items-center justify-center gap-3">
+                <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0" />
+                <div className="text-left">
+                  <strong className="text-slate-800 block">Tất cả học sinh đều đã nộp bài hoặc không có đề thi nào sát hạn chót (&lt; 24h)!</strong>
+                  <span className="text-[11px] text-slate-500">Giáo viên có thể chuyển sang xem toàn bộ các đề thi khác trong học kỳ.</span>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       )}
 

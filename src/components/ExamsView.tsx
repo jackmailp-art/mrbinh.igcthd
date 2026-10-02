@@ -36,7 +36,8 @@ import {
   ChevronDown,
   Tag,
   Save,
-  GraduationCap
+  GraduationCap,
+  FileSpreadsheet
 } from 'lucide-react';
 import { ExamItem, ExamQuestion } from '../types';
 import { exportExamToWord, printExamSheet, exportExamToJson } from '../utils/exportExamDocs';
@@ -58,6 +59,7 @@ interface ExamsViewProps {
   onRestoreExams?: (importedExams: ExamItem[]) => void;
   onShowToast?: (msg: string, type?: 'success' | 'info') => void;
   onUpdateExam?: (exam: ExamItem) => void;
+  onViewExamResults?: (exam: ExamItem) => void;
 }
 
 type GradeTab = 'ALL' | '10' | '11' | '12' | 'THPT' | 'THCS';
@@ -74,7 +76,8 @@ export const ExamsView: React.FC<ExamsViewProps> = ({
   onDeleteExam,
   onRestoreExams,
   onShowToast,
-  onUpdateExam
+  onUpdateExam,
+  onViewExamResults
 }) => {
   // View & Filter States
   const [viewMode, setViewMode] = useState<ViewMode>('table');
@@ -1006,7 +1009,14 @@ export const ExamsView: React.FC<ExamsViewProps> = ({
                     </div>
 
                     <h3
-                      onClick={() => onPreviewExam(exam)}
+                      onClick={() => {
+                        const isAssigned = (exam.assignedClasses && exam.assignedClasses.length > 0) || (exam.assignedClassIds && exam.assignedClassIds.length > 0) || exam.submissions > 0;
+                        if (isAssigned && onViewExamResults) {
+                          onViewExamResults(exam);
+                        } else {
+                          onPreviewExam(exam);
+                        }
+                      }}
                       className="font-bold text-sm text-slate-900 hover:text-blue-600 transition cursor-pointer leading-snug line-clamp-2"
                       title={exam.title}
                     >
@@ -1037,12 +1047,24 @@ export const ExamsView: React.FC<ExamsViewProps> = ({
                       </div>
                     )}
 
-                    {/* Assigned class notice */}
+                    {/* Assigned class notice - Clickable to view results */}
                     {exam.assignedClasses && exam.assignedClasses.length > 0 && (
-                      <div className="text-[11px] text-blue-700 bg-blue-50/80 px-2.5 py-1 rounded-lg border border-blue-200/60 inline-flex items-center gap-1">
-                        <Users className="w-3 h-3 text-blue-600" />
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (onViewExamResults) onViewExamResults(exam);
+                        }}
+                        className="text-[11px] text-blue-700 bg-blue-50/80 hover:bg-blue-100 px-2.5 py-1 rounded-lg border border-blue-200/80 inline-flex items-center gap-1.5 cursor-pointer transition shadow-2xs group/tag"
+                        title="Bấm để xem danh sách học sinh từng lớp, bài làm & Xuất Excel"
+                      >
+                        <Users className="w-3 h-3 text-blue-600 shrink-0" />
                         <span>Đã giao: <strong>{exam.assignedClasses.join(', ')}</strong></span>
-                      </div>
+                        <span className="text-[10px] bg-blue-600 group-hover/tag:bg-blue-700 text-white font-black px-1.5 py-0.2 rounded-full flex items-center gap-0.5 ml-1">
+                          <FileSpreadsheet className="w-2.5 h-2.5" />
+                          <span>DS Lớp & Excel</span>
+                        </span>
+                      </button>
                     )}
                   </div>
 
@@ -1126,6 +1148,21 @@ export const ExamsView: React.FC<ExamsViewProps> = ({
                       className="p-2 text-purple-600 hover:text-purple-800 hover:bg-purple-50 rounded-xl border border-purple-200 hover:border-purple-300 transition cursor-pointer shadow-2xs active:scale-95"
                     >
                       <Shuffle className="w-4 h-4" />
+                    </button>
+
+                    {/* Nút Xem DS Lớp & Kết quả làm bài (Excel) */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (onViewExamResults) {
+                          onViewExamResults(exam);
+                        }
+                      }}
+                      title="Xem danh sách học sinh từng lớp, bài làm của các em & Xuất Excel (.xlsx)"
+                      className="p-2 text-indigo-600 hover:text-white hover:bg-indigo-600 rounded-xl border border-indigo-200 hover:border-indigo-600 transition cursor-pointer shadow-2xs active:scale-95 flex items-center gap-1"
+                    >
+                      <FileSpreadsheet className="w-4 h-4" />
+                      <span className="text-[11px] font-bold hidden 2xl:inline">DS Lớp & KQ</span>
                     </button>
 
                     {/* Nút Xuất Word/PDF */}
@@ -1219,7 +1256,14 @@ export const ExamsView: React.FC<ExamsViewProps> = ({
 
                   {/* Title & Topic */}
                   <h3
-                    onClick={() => onPreviewExam(exam)}
+                    onClick={() => {
+                      const isAssigned = (exam.assignedClasses && exam.assignedClasses.length > 0) || (exam.assignedClassIds && exam.assignedClassIds.length > 0) || exam.submissions > 0;
+                      if (isAssigned && onViewExamResults) {
+                        onViewExamResults(exam);
+                      } else {
+                        onPreviewExam(exam);
+                      }
+                    }}
                     className="font-extrabold text-sm text-slate-900 group-hover:text-blue-600 transition cursor-pointer line-clamp-2 leading-snug"
                     title={exam.title}
                   >
@@ -1232,12 +1276,26 @@ export const ExamsView: React.FC<ExamsViewProps> = ({
                     </p>
                   )}
 
-                  {/* Assigned Classes */}
+                  {/* Assigned Classes - Clickable to view class results & export Excel */}
                   {exam.assignedClasses && exam.assignedClasses.length > 0 && (
-                    <div className="text-[11px] text-blue-700 bg-blue-50/80 px-2.5 py-1 rounded-lg border border-blue-200/60 inline-flex items-center gap-1 mt-2">
-                      <Users className="w-3 h-3 text-blue-600" />
-                      <span>Đã giao: <strong>{exam.assignedClasses.join(', ')}</strong></span>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (onViewExamResults) onViewExamResults(exam);
+                      }}
+                      className="text-[11px] text-blue-700 bg-blue-50/80 hover:bg-blue-100 px-2.5 py-1.5 rounded-lg border border-blue-200/80 inline-flex items-center justify-between gap-1 mt-2 w-full cursor-pointer transition shadow-2xs group/cardtag"
+                      title="Bấm để xem danh sách học sinh từng lớp, bài làm chi tiết & Xuất Excel"
+                    >
+                      <div className="flex items-center gap-1 truncate">
+                        <Users className="w-3 h-3 text-blue-600 shrink-0" />
+                        <span className="truncate">Đã giao: <strong>{exam.assignedClasses.join(', ')}</strong></span>
+                      </div>
+                      <span className="text-[10px] bg-blue-600 group-hover/cardtag:bg-blue-700 text-white font-black px-1.5 py-0.2 rounded-full shrink-0 flex items-center gap-0.5">
+                        <FileSpreadsheet className="w-2.5 h-2.5" />
+                        <span>Xem KQ & Excel</span>
+                      </span>
+                    </button>
                   )}
 
                   {/* Stats Mini Grid */}
@@ -1268,6 +1326,18 @@ export const ExamsView: React.FC<ExamsViewProps> = ({
                       className="p-1.5 text-slate-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg border border-slate-200 transition cursor-pointer active:scale-95"
                     >
                       <Eye className="w-4 h-4" />
+                    </button>
+
+                    {/* Xem DS lớp & Kết quả thi (Excel) */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (onViewExamResults) onViewExamResults(exam);
+                      }}
+                      title="Xem danh sách học sinh từng lớp, bài làm của các em & Xuất Excel (.xlsx)"
+                      className="p-1.5 text-indigo-600 hover:text-white hover:bg-indigo-600 rounded-lg border border-indigo-200 hover:border-indigo-600 transition cursor-pointer active:scale-95 shadow-2xs"
+                    >
+                      <FileSpreadsheet className="w-4 h-4" />
                     </button>
 
                     {/* Sửa */}

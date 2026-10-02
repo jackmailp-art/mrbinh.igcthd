@@ -44,6 +44,8 @@ import { ThptExamHubView } from './components/ThptExamHubView';
 import { AiVoiceConversationView } from './components/AiVoiceConversationView';
 import { TasksManagementView } from './components/TasksManagementView';
 import { AiMediaStudioView } from './components/AiMediaStudioView';
+import { EnglishSkillsView } from './components/EnglishSkillsView';
+import { AssignedExamResultsModal } from './components/AssignedExamResultsModal';
 
 import {
   INITIAL_CLASSES,
@@ -167,6 +169,7 @@ export default function App() {
   const [showAssignModal, setShowAssignModal] = useState(false);
   const [selectedExamForPreview, setSelectedExamForPreview] = useState<ExamItem | null>(null);
   const [selectedExamForAssign, setSelectedExamForAssign] = useState<ExamItem | null>(null);
+  const [selectedExamForResults, setSelectedExamForResults] = useState<ExamItem | null>(null);
 
   // Toast System
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
@@ -915,8 +918,11 @@ export default function App() {
               exams={exams}
               tasks={tasks}
               submissions={submissions}
+              students={students}
               activeStudentSection={
-                activeMenu === 'student-results'
+                activeMenu === 'english-skills' || activeMenu === 'student-skills'
+                  ? 'skills'
+                  : activeMenu === 'student-results'
                   ? 'results'
                   : activeMenu === 'student-tasks'
                   ? 'tasks'
@@ -924,7 +930,17 @@ export default function App() {
                   ? 'profile'
                   : 'exams'
               }
-              onSectionChange={(sec) => setActiveMenu(`student-${sec}`)}
+              onSectionChange={(sec) => {
+                if (sec === 'skills') {
+                  setActiveMenu('english-skills');
+                } else if (sec === 'exams') {
+                  setActiveMenu('student-exams');
+                } else if (sec === 'live-voice') {
+                  setActiveMenu('student-live-voice');
+                } else {
+                  setActiveMenu(`student-${sec}`);
+                }
+              }}
               onSubmissionSuccess={(newSub) => {
                 const updatedSubs = [newSub, ...submissions];
                 setSubmissions(updatedSubs);
@@ -1042,7 +1058,7 @@ export default function App() {
                         setShowAiModal(true);
                       }
                     }}
-                    onOpenThptHub={() => setActiveMenu('thpt-hub')}
+                    onOpenThptHub={() => setActiveMenu('thpt')}
                     onOpenTasks={() => setActiveMenu('tasks')}
                     onOpenExams={() => setActiveMenu('exams')}
                     onOpenAnalytics={() => setActiveMenu('analytics')}
@@ -1126,6 +1142,36 @@ export default function App() {
                   localStorage.setItem('EDUADMIN_EXAM_BANK', JSON.stringify(importedExams));
                 } catch {}
               }}
+              onViewExamResults={(exam) => setSelectedExamForResults(exam)}
+              onShowToast={(msg, type) => showToast(msg, type)}
+            />
+          )}
+
+          {/* VIEW: ENGLISH SKILLS (LEXICO & GRAMMAR THEO GLOBAL SUCCESS + 4 KỸ NĂNG) */}
+          {activeMenu === 'english-skills' && (
+            <EnglishSkillsView
+              classes={classes}
+              students={students}
+              user={user}
+              onSaveExam={(newExam) => {
+                const updated = [newExam, ...exams];
+                setExams(updated);
+                saveLocalState({ exams: updated });
+                try {
+                  localStorage.setItem('EDUADMIN_EXAM_BANK', JSON.stringify(updated));
+                  localStorage.setItem('eng_exams_v1', JSON.stringify(updated));
+                } catch {}
+                apiService.createOrUpdateExam(newExam);
+                apiService.syncToServer({ exams: updated });
+                showToast(`Đã lưu đề "${newExam.title}" vào ngân hàng đề thi!`, 'success');
+              }}
+              onAssignExam={(exam) => {
+                setSelectedExamForAssign(exam);
+                setShowAssignModal(true);
+              }}
+              onStartPractice={(exam) => {
+                setSelectedExamForPreview(exam);
+              }}
               onShowToast={(msg, type) => showToast(msg, type)}
             />
           )}
@@ -1167,7 +1213,7 @@ export default function App() {
           )}
 
           {/* VIEW: LUYỆN THI THPT CHUẨN 2026 */}
-          {activeMenu === 'thpt' && (
+          {(activeMenu === 'thpt' || activeMenu === 'thpt-hub') && (
             <ThptExamHubView
               classes={classes}
               submissions={submissions}
@@ -1179,7 +1225,14 @@ export default function App() {
                 saveLocalState({ submissions: newSubs });
               }}
               onShowToast={(msg, type) => showToast(msg, type)}
-              onOpenAiModal={() => setShowAiModal(true)}
+              onOpenAiModal={() => {
+                setAiModalTab('ai');
+                setShowAiModal(true);
+              }}
+              onOpenManualModal={() => {
+                setAiModalTab('manual');
+                setShowAiModal(true);
+              }}
             />
           )}
 
@@ -1187,6 +1240,7 @@ export default function App() {
           {activeMenu === 'tasks' && (
             <TasksManagementView
               tasks={tasks}
+              exams={exams}
               students={students}
               classes={classes}
               onAddTask={(newTask) => {
@@ -1206,6 +1260,8 @@ export default function App() {
                 saveLocalState({ tasks: updatedTasks });
                 apiService.syncToServer({ tasks: updatedTasks });
               }}
+              onUpdateExam={handleUpdateExam}
+              onViewExamResults={(exam) => setSelectedExamForResults(exam)}
               onShowToast={(msg, type) => showToast(msg, type)}
             />
           )}
@@ -1277,6 +1333,23 @@ export default function App() {
             setShowAssignModal(true);
           }}
           onUpdateExam={handleUpdateExam}
+          onViewExamResults={(exam) => {
+            setSelectedExamForPreview(null);
+            setSelectedExamForResults(exam);
+          }}
+        />
+      )}
+
+      {/* MODAL KẾT QUẢ ĐỀ THI ĐÃ GIAO - DANH SÁCH HỌC SINH TỪNG LỚP & XUẤT EXCEL CHUẨN */}
+      {isTeacher && selectedExamForResults && (
+        <AssignedExamResultsModal
+          isOpen={Boolean(selectedExamForResults)}
+          onClose={() => setSelectedExamForResults(null)}
+          exam={selectedExamForResults}
+          classes={classes}
+          students={students}
+          submissions={submissions}
+          onShowToast={(msg, type) => showToast(msg, type)}
         />
       )}
 

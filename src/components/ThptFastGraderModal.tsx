@@ -67,7 +67,7 @@ export const ThptFastGraderModal: React.FC<ThptFastGraderModalProps> = ({
   activeExam,
   onShowToast,
 }) => {
-  const [studentName, setStudentName] = useState('Nguyễn Văn An (Lớp 12A1)');
+  const [studentName, setStudentName] = useState('');
   const [answerString, setAnswerString] = useState('');
   const [result, setResult] = useState<GradedResult | null>(null);
   const [remedialAnswers, setRemedialAnswers] = useState<Record<string, string>>({});

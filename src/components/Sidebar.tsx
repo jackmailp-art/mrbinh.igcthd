@@ -18,7 +18,8 @@ import {
   ChevronRight,
   Radio,
   Video,
-  Mic
+  Mic,
+  Layers
 } from 'lucide-react';
 import { AuthUser, UserRole } from '../types';
 
@@ -262,6 +263,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   isTeacher={isTeacher}
                 />
 
+                {/* 3.1. English Skills [Badge: 4 KỸ NĂNG] */}
+                <NavButton
+                  icon={<Layers className="w-4 h-4 text-emerald-300" />}
+                  label="English Skills"
+                  badge="4 KỸ NĂNG"
+                  badgeColor="bg-emerald-400 text-emerald-950 font-black"
+                  isActive={activeMenu === 'english-skills'}
+                  onClick={() => setActiveMenu('english-skills')}
+                  isCollapsed={isCollapsed}
+                  isTeacher={isTeacher}
+                />
+
                 {/* 4. Tạo bằng AI [Badge: MỚI] */}
                 <NavButton
                   icon={<Sparkles className="w-4 h-4 text-amber-300" />}
@@ -405,7 +418,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
               <NavButton
                 icon={<BookOpen className="w-4 h-4 text-emerald-300" />}
-                label="Bài tập cần làm"
+                label="My Exams (Bài tập & đề thi theo khối, lớp mã GV đã giao)"
                 isActive={activeMenu === 'student-exams'}
                 onClick={() => setActiveMenu('student-exams')}
                 isCollapsed={isCollapsed}
@@ -413,8 +426,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
               />
 
               <NavButton
+                icon={<Layers className="w-4 h-4 text-teal-300" />}
+                label="English Skills (Luyện Ngữ pháp & Từ vựng)"
+                badge="4 KỸ NĂNG"
+                badgeColor="bg-amber-400 text-teal-950 font-black"
+                isActive={activeMenu === 'english-skills' || activeMenu === 'student-skills'}
+                onClick={() => setActiveMenu('english-skills')}
+                isCollapsed={isCollapsed}
+                isTeacher={isTeacher}
+              />
+
+              <NavButton
                 icon={<Award className="w-4 h-4 text-amber-300" />}
-                label="Kết quả cá nhân"
+                label="Progress Reports (Phân tích Năng lực AI cá nhân hóa)"
+                badge="AI"
+                badgeColor="bg-indigo-400 text-indigo-950 font-black"
                 isActive={activeMenu === 'student-results'}
                 onClick={() => setActiveMenu('student-results')}
                 isCollapsed={isCollapsed}
